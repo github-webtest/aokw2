@@ -1,0 +1,231 @@
+<html>
+<head>
+	<title>Age of Kingdom Wars</title>
+	<meta name="author" content="XMAF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link url="style" rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/aokw_icon.png" type="image/icon">
+<style>
+@font-face{
+  font-family: Poppins-Medium;
+  src: url(font/Poppins-Medium.woff);
+}
+</style>
+	<script src="js/storage.js" type="text/javascript"></script>
+	<script src="js/href.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js"></script>
+</head>
+
+<body onload="page_save()" style="background-image: url('images/white_bg.jpg');">
+
+<div id="loading" style="width: 100%; height: 100vh; text-align: center; justify-content: center; display: flex; position: fixed; background-color: rgba(0, 0, 0, 0.5); z-index: 9999;">
+<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div class="top_div" style="background-image: url('images/top_bg.png');">
+
+<div class="top">
+<div class="head_icon" style="background-image: url('images/back_icon.png');" onclick="go_back()"></div>
+<div class="head_text"><b id="lan_head_text"></b></div>
+<div class="head_icon f_right" style="background-image: url('images/home_icon.png');" onclick="go_kingdom()"></div>
+</div>
+
+</div>
+
+<div class="page_menu" style="height: 87.5vh; margin-top: 1vh; margin-bottom: 1vh;">
+
+<div class="info_div1">
+
+<div class="info_div_head"><b id="age_1_text"></b></div>
+
+<div class="info_div1_2">
+<div class="info_div1_2_img_div"><div id="age_img" class="info_div1_2_img"></div></div>
+<div class="info_div1_2_right_div"><b id="age"></b></div>
+</div>
+
+<div class="info_div1_3"><b id="age_points_text" style="color: black;"></b><b id="age_points">0</b></div>
+
+<div class="mn_div_line" style="background-image: url('images/line.png');"></div>
+
+<div class="info_div1_4"><b id="next_age_text"></b></div>
+
+</div>
+
+<div class="info_div2">
+
+<div class="info_div_head"><b id="economy_text"></b></div>
+
+<div class="info_img_text">
+<div class="info_img" style="background-image: url('images/food_icon.png');"></div>
+<div class="info_text"><b id="food_1_text"></b><b id="net_food_hour"></b><b id="food_hour_text"></b></div>
+</div>
+
+<div class="info_border">
+
+<div class="info_border_in" style="margin-bottom: 0.33vh;">
+<div class="info_img_border" style="background-image: url('images/plus_icon.png');"></div>
+<b id="plus_food_hour"></b><b id="food_2_text"></b>
+</div>
+
+<div class="info_border_in">
+<div class="info_img_border" style="background-image: url('images/minus_icon.png');"></div>
+<b id="minus_food_hour"></b><b id="food_3_text"></b>
+</div>
+
+</div>
+
+<div class="info_img_text">
+<div class="info_img" style="background-image: url('images/wood_icon.png');"></div>
+<div class="info_text"><b id="wood_1_text"></b><b id="net_wood_hour"></b><b id="wood_hour_text"></b></div>
+</div>
+
+<div class="info_img_text">
+<div class="info_img" style="background-image: url('images/gold_icon.png');"></div>
+<div class="info_text"><b id="gold_1_text"></b><b id="net_gold_hour"></b><b id="gold_hour_text"></b></div>
+</div>
+
+<div class="info_border">
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="kingdom_center_1_text" style="color: black;"></b><b id="k_c_gold_hour"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="colonies_1_text" style="color: black;"></b><b id="c_gold_hour"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="alliance_text" style="color: black;"></b><b id="a_gold_hour"></b></div>
+</div>
+
+</div>
+
+<div class="info_img_text">
+<div class="info_img" style="background-image: url('images/diamond_icon.png');"></div>
+<div class="info_text"><b id="diamond_text"></b><b id="net_diamond_hour"></b><b id="diamond_hour_text"></b></div>
+</div>
+
+<div class="info_border">
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="cities_1_text" style="color: black;"></b><b id="c_diamond_hour"></b></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="info_div2" style="float: right; margin-left: 0px; margin-right: 2%;">
+
+<div class="info_div_head"><b id="population_text"></b></div>
+
+<div class="info_img_text">
+<div class="info_img" style="background-image: url('images/population_icon.png');"></div>
+<div class="info_text"><b id="villager_text"></b><b id="total_villager"></b></div>
+</div>
+
+<div class="info_border">
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="farmer_text" style="color: black;"></b><b id="total_farmer"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="woodcutter_text" style="color: black;"></b><b id="total_woodcutter"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="gold_miner_text" style="color: black;"></b><b id="total_gold_miner"></b></div>
+</div>
+
+</div>
+
+<div class="info_img_text">
+<div class="info_img" style="background-image: url('images/army_icon.png');"></div>
+<div class="info_text"><b id="troops_text"></b><b id="total_troops"></b></div>
+</div>
+
+<div class="info_border">
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="kingdom_center_2_text" style="color: black;"></b><b id="total_k_c_troops"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="colonies_2_text" style="color: black;"></b><b id="total_c1_troops"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="cities_2_text" style="color: black;"></b><b id="total_c2_troops"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="support_troops_text" style="color: black;"></b><b id="total_s_t_troops"></b></div>
+</div>
+
+</div>
+
+<div class="info_img_text">
+<div class="info_img" style="background-image: url('images/spy_icon.png');"></div>
+<div class="info_text"><b id="spies_text"></b><b id="total_spy"></b></div>
+</div>
+
+<div class="info_border">
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="kingdom_center_3_text" style="color: black;"></b><b id="total_k_c_spy"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="colonies_3_text" style="color: black;"></b><b id="total_c1_spy"></b></div>
+</div>
+
+<div class="info_border_in">
+<div class="info_border_in_text"><b id="cities_3_text" style="color: black;"></b><b id="total_c2_spy"></b></div>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="info_div2">
+
+<div class="info_div_head"><b id="storage_limit_text"></b></div>
+
+<div class="info_border">
+
+<div class="info_storage_div">
+<div class="info_storage_div_in" style="text-align: left; color: #D2042D;"><b id="age_2_text"></b></div>
+<div class="info_storage_div_in"><b id="age_3_text" style="color: black;"></b><b id="now_age" style="color: black;">1</b></div>
+<div class="info_storage_div_in"><b id="next_age_text2"></b><b id="next_age"></b></div>
+</div>
+
+<div class="info_storage_div">
+<div class="info_storage_div_in" style="text-align: left; color: #D2042D;"><b id="food_4_text"></b></div>
+<div class="info_storage_div_in"><b id="now_food" style="color: black;">10K</b></div>
+<div class="info_storage_div_in"><b id="next_food">30K</b></div>
+</div>
+
+<div class="info_storage_div">
+<div class="info_storage_div_in" style="text-align: left; color: #D2042D;"><b id="wood_2_text"></b></div>
+<div class="info_storage_div_in"><b id="now_wood" style="color: black;">10K</b></div>
+<div class="info_storage_div_in"><b id="next_wood">30K</b></div>
+</div>
+
+<div class="info_storage_div">
+<div class="info_storage_div_in" style="text-align: left; color: #D2042D;"><b id="gold_2_text"></b></div>
+<div class="info_storage_div_in"><b id="now_gold" style="color: black;">100K</b></div>
+<div class="info_storage_div_in"><b id="next_gold">-</b></div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

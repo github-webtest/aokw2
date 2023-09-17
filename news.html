@@ -1,0 +1,55 @@
+<html>
+
+<head>
+	<title>Age of Kingdom Wars</title>
+	<meta name="author" content="XMAF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link url="style" rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/aokw_icon.png" type="image/icon">
+<style>
+@font-face{
+  font-family: Poppins-Medium;
+  src: url(font/Poppins-Medium.woff);
+}
+</style>
+	<script src="js/news.js" type="text/javascript"></script>
+	<script src="js/href.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js"></script>
+</head>
+
+<body onload="page_save()" style="background-image: url('images/white_bg.jpg');">
+
+<div id="loading">
+<div class="loading_div">
+<div class="loading_img" style="background-image: url('images/loading.png');"></div>
+</div>
+</div>
+
+<div class="top_div" style="background-image: url('images/top_bg.png');">
+
+<div class="top">
+<div class="head_icon" style="background-image: url('images/back_icon.png');" onclick="go_back()"></div>
+<div class="head_text"><b id="lan_head_text"></b></div>
+<div class="head_icon f_right" style="background-image: url('images/home_icon.png');" onclick="go_kingdom()"></div>
+</div>
+
+<div class="top_buttons">
+<div id="top_button1" class="top_button" onclick="top_left()" style="background-image: url('images/top_button_bg1.png');"><b style="color: black;" id="top_button_text1"></b></div>
+<div id="top_button2" class="top_button" onclick="top_right()" style="background-image: url('images/top_button_bg2.png');"><b id="top_button_text2"></b></div>
+<div class="top_line" style="background-image: url('images/top_line.png');"></div>
+</div>
+
+</div>
+
+<div id="page_menu1" class="page_menu">
+
+</div>
+
+<div id="page_menu2" class="page_menu" style="display: none;">
+
+</div>
+
+</body>
+
+</html>

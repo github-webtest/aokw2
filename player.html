@@ -1,0 +1,59 @@
+<html>
+
+<head>
+	<title>Age of Kingdom Wars</title>
+	<meta name="author" content="XMAF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link url="style" rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/aokw_icon.png" type="image/icon">
+<style>
+@font-face{
+  font-family: Poppins-Medium;
+  src: url(font/Poppins-Medium.woff);
+}
+</style>
+	<script src="js/player.js" type="text/javascript"></script>
+	<script src="js/href.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js"></script>
+</head>
+
+<body onload="page_save()" style="background-image: url('images/white_bg.jpg');">
+
+<div id="loading">
+<div class="loading_div">
+<div class="loading_img" style="background-image: url('images/loading.png');"></div>
+</div>
+</div>
+
+<div class="top_div" style="background-image: url('images/top_bg.png');">
+
+<div class="top">
+<div class="head_icon" style="background-image: url('images/back_icon.png');" onclick="go_back()"></div>
+<div class="head_text"><b id="lan_head_text">Player</b></div>
+<div class="head_icon f_right" style="background-image: url('images/home_icon.png');" onclick="go_kingdom()"></div>
+</div>
+
+</div>
+
+<div class="page_menu" style="height: 76vh;">
+
+<div class="player_info_text"><b id="kingdom_info_text"></b></div>
+<div class="player_board">
+<div class="player_board_left"><b id="alliance_text"></b></div><div class="player_board_right" style="cursor: pointer;"><b id="player_alliance">qwertyuıopas14</b><div class="player_board_img" style="background-image: url('images/next_icon.png');"></div></div>
+<div class="player_board_left"><b id="age_text"></b></div><div class="player_board_right"><b id="player_age">Tunç</b><div class="player_board_img" style="background-image: url('images/age_1_icon.png');"></div></div>
+<div class="player_board_left"><b id="age_points_text"></b></div><div class="player_board_right"><b id="player_age_points">0</b><div class="player_board_img" style="background-image: url('images/xp_icon.png');"></div></div>
+<div class="player_board_left"><b id="victory_total_text"></b></div><div class="player_board_right"><b id="player_victory">0</b><b>/</b><b id="player_total_war">0</b><div class="player_board_img" style="background-image: url('images/victory_icon.png');"></div></div>
+<div class="player_board_left"><b id="total_kill_text"></b></div><div class="player_board_right"><b id="player_total_kill">0</b><div class="player_board_img" style="background-image: url('images/kill_icon.png');"></div></div>
+</div>
+
+<div class="player_info_text"><b id="own_places_text"></b><b> (</b><b id="player_own_places">1</b><b>)</b></div>
+<div class="mn_div_in"><div class="mn_div_in_text"><b id="player_name">Player</b><b id="center_text"> </b></div><div class="mn_div_in_img" style="background-image: url('images/next_icon.png');"></div></div>
+</div>
+
+<div class="bottom_button_l" style="background-image: url('images/button_lime.png');"><b id="player_button_btn_l_text"></b></div>
+<div class="bottom_button_r" style="background-image: url('images/button_blue.png');"><b id="player_button_btn_r_text"></b></div>
+
+</body>
+
+</html>
