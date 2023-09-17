@@ -99,8 +99,8 @@ setInterval(function(){
 	document.getElementById("total_c1_troops").innerText = localStorage.getItem("total_c1_troops");
 	document.getElementById("total_c2_troops").innerText = localStorage.getItem("total_c2_troops");
 	document.getElementById("total_s_t_troops").innerText = localStorage.getItem("total_s_t_troops");
-	document.getElementById("total_spy").innerText = localStorage.getItem("total_s_t_troops");
-	document.getElementById("total_k_c_spy").innerText = localStorage.getItem("total_k_c_spy");
+	document.getElementById("total_spy").innerText = localStorage.getItem("spy_have");
+	document.getElementById("total_k_c_spy").innerText = localStorage.getItem("spy_have");
 	document.getElementById("total_c1_spy").innerText = localStorage.getItem("total_c1_spy");
 	document.getElementById("total_c2_spy").innerText = localStorage.getItem("total_c2_spy");
 	document.getElementById("now_age").innerText = localStorage.getItem("age");
