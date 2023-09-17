@@ -1,0 +1,358 @@
+<html>
+
+<head>
+	<title>Age of Kingdom Wars</title>
+	<meta name="author" content="XMAF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link url="style" rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/aokw_icon.png" type="image/icon">
+<style>
+@font-face{
+  font-family: Poppins-Medium;
+  src: url(font/Poppins-Medium.woff);
+}
+</style>
+	<script src="js/academy.js" type="text/javascript"></script>
+	<script src="js/href.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="json/json.js"></script>
+</head>
+
+<body onload="page_save()" style="background-image: url('images/white_bg.jpg');">
+
+<div id="loading" style="width: 100%; height: 100vh; text-align: center; justify-content: center; display: flex; position: fixed; background-color: rgba(0, 0, 0, 0.5); z-index: 9999;">
+<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div class="top_div" style="background-image: url('images/top_bg.png');">
+
+<div class="top">
+<div class="head_icon" style="background-image: url('images/back_icon.png');" onclick="go_back()"></div>
+<div class="head_text"><b id="lan_head_text"></b></div>
+<div class="head_icon f_right" style="background-image: url('images/home_icon.png');" onclick="go_kingdom()"></div>
+</div>
+
+</div>
+
+<div id="troops_info_bg" class="troops_info_bg">
+<div id="troops_info" class="troops_info" style="background-image: url('images/white_bg.jpg');">
+<div class="set_board_top"><div class="set_board_text"><b id="troops_text"></b></div><img class="set_board_img" src="images/x_icon.png" onclick="close_troops_info()"></div>
+
+<div class="troop_info_board_title"><b id="t_info"></b></div>
+<div class="troop_info_board">
+<div class="troop_info_board_in"><div class="troop_info_in_l"><b id="t_age"></b></div><div class="troop_info_in_r"><b id="age_t"></b></div></div>
+<div class="troop_info_board_in"><div class="troop_info_in_l"><b id="t_type"></b></div><div class="troop_info_in_r"><b id="type_t"></b></div></div>
+<div class="troop_info_board_in"><div class="troop_info_in_l"><b id="t_class"></b></div><div class="troop_info_in_r"><b id="class_t"></b></div></div>
+</div>
+
+<div class="troop_info_board_title"><b id="t_cost"></b></div>
+<div class="troop_info_board">
+<div id="produce_d1" class="troop_cost_head"><b id="produce_text"></b></div>
+<div id="produce_d2" class="troop_cost_in"><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/food_icon.png"><b id="p_food"></b></div><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/wood_icon.png"><b id="p_wood"></b></div><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/gold_icon.png"><b id="p_gold"></b></div><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/diamond_icon.png"><b id="p_diamond"></b></div><div class="troop_cost_in_1_2"><img class="troop_cost_img" src="images/clock_icon.png"><b id="p_time"></b></div></div>
+<div class="troop_cost_head"><b id="upgrade_text"></b></div>
+<div class="troop_cost_in"><div class="troop_cost_in_2"><img class="troop_cost_img" src="images/gold_icon.png"><b id="u_gold"></b></div><div class="troop_cost_in_2"><img class="troop_cost_img" src="images/xp_icon.png"><b id="u_xp"></b></div><div class="troop_cost_in_2"><img class="troop_cost_img" src="images/clock_icon.png"><b id="u_time"></b></div></div>
+</div>
+
+<div class="troop_info_board_title"><b id="t_abilities"></b></div>
+<div class="troop_info_board">
+<div class="troop_info_board_in_t"><b id="abilities_text"></b></div>
+<div id="abilities_1" class="troop_info_board_in"><div class="troop_info_in_l"><b id="a1_title"></b></div><div class="troop_info_in_r"><b id="a1_text"></b></div></div>
+<div id="abilities_2" class="troop_info_board_in"><div class="troop_info_in_l"><b id="a2_title"></b></div><div class="troop_info_in_r"><b id="a2_text"></b></div></div>
+<div id="abilities_3" class="troop_info_board_in"><div class="troop_info_in_l"><b id="a3_title"></b></div><div class="troop_info_in_r"><b id="a3_text"></b></div></div>
+</div>
+
+</div>
+</div>
+
+<div class="page_menu" style="height: 85.5vh;">
+
+<div class="top_build">
+<div class="top_build_img" style="background-image: url('images/academy_icon.png');"></div>
+<div class="top_build_text"><b id="build_top_text"></b></div>
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="farmingx_text"></b><b> Lv: </b><b id="farming_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_1_icon.png');" onclick="academy_info1()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right1" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;" onclick="farming_up()">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="farming_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper1" class="build_right" style="display: none;">
+
+<div id="build_up_board1">
+<div class="build_up_timer"><b id="farming_up_d">00</b>:<b id="farming_up_h">00</b>:<b id="farming_up_m">00</b>:<b id="farming_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="farming_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="farming_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="lumberingx_text"></b><b> Lv: </b><b id="lumbering_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_2_icon.png');" onclick="academy_info2()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right2" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="lumbering_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="lumbering_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper2" class="build_right" style="display: none;">
+
+<div id="build_up_board2">
+<div class="build_up_timer"><b id="lumbering_up_d">00</b>:<b id="lumbering_up_h">00</b>:<b id="lumbering_up_m">00</b>:<b id="lumbering_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="lumbering_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="lumbering_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="miningx_text"></b><b> Lv: </b><b id="mining_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_3_icon.png');" onclick="academy_info3()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right3" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="mining_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="mining_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper3" class="build_right" style="display: none;">
+
+<div id="build_up_board3">
+<div class="build_up_timer"><b id="mining_up_d">00</b>:<b id="mining_up_h">00</b>:<b id="mining_up_m">00</b>:<b id="mining_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="mining_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="mining_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="blacksmithingx_text"></b><b> Lv: </b><b id="blacksmithing_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_4_icon.png');" onclick="academy_info4()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right4" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="blacksmithing_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="blacksmithing_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper4" class="build_right" style="display: none;">
+
+<div id="build_up_board4">
+<div class="build_up_timer"><b id="blacksmithing_up_d">00</b>:<b id="blacksmithing_up_h">00</b>:<b id="blacksmithing_up_m">00</b>:<b id="blacksmithing_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="blacksmithing_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="blacksmithing_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="ridingx_text"></b><b> Lv: </b><b id="riding_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_5_icon.png');" onclick="academy_info5()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right5" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="riding_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="riding_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper5" class="build_right" style="display: none;">
+
+<div id="build_up_board5">
+<div class="build_up_timer"><b id="riding_up_d">00</b>:<b id="riding_up_h">00</b>:<b id="riding_up_m">00</b>:<b id="riding_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="riding_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="riding_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="geometryx_text"></b><b> Lv: </b><b id="geometry_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_6_icon.png');" onclick="academy_info6()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right6" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="geometry_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="geometry_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper6" class="build_right" style="display: none;">
+
+<div id="build_up_board6">
+<div class="build_up_timer"><b id="geometry_up_d">00</b>:<b id="geometry_up_h">00</b>:<b id="geometry_up_m">00</b>:<b id="geometry_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="geometry_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="geometry_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="cartographyx_text"></b><b> Lv: </b><b id="cartography_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_7_icon.png');" onclick="academy_info7()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right7" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="cartography_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="cartography_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper7" class="build_right" style="display: none;">
+
+<div id="build_up_board7">
+<div class="build_up_timer"><b id="cartography_up_d">00</b>:<b id="cartography_up_h">00</b>:<b id="cartography_up_m">00</b>:<b id="cartography_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="cartography_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="cartography_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="spyingx_text"></b><b> Lv: </b><b id="spying_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_8_icon.png');" onclick="academy_info8()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right8" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="spying_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="spying_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper8" class="build_right" style="display: none;">
+
+<div id="build_up_board8">
+<div class="build_up_timer"><b id="spying_up_d">00</b>:<b id="spying_up_h">00</b>:<b id="spying_up_m">00</b>:<b id="spying_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="spying_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="spying_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="masonryx_text"></b><b> Lv: </b><b id="masonry_level">0</b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/academy_9_icon.png');" onclick="academy_info9()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right9" class="build_right">
+<div class="build_button_text" style="margin-right: 1%;">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="masonry_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="masonry_next_level">1</b></div>
+</div>
+</div>
+
+<div id="build_upper9" class="build_right" style="display: none;">
+
+<div id="build_up_board9">
+<div class="build_up_timer"><b id="masonry_up_d">00</b>:<b id="masonry_up_h">00</b>:<b id="masonry_up_m">00</b>:<b id="masonry_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="masonry_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="masonry_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
