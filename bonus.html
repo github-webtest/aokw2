@@ -1,0 +1,97 @@
+<html>
+
+<head>
+	<title>Age of Kingdom Wars</title>
+	<meta name="author" content="XMAF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link url="style" rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/aokw_icon.png" type="image/icon">
+<style>
+@font-face{
+  font-family: Poppins-Medium;
+  src: url(font/Poppins-Medium.woff);
+}
+
+.bonus_b_img{
+  background-image: url('images/bonus_2_icon.png');
+}
+
+.bonus_b_img2{
+  background-image: url('images/bonus_icon.png');
+}
+
+@keyframes bonus_an1 {
+  0%{opacity: 1;}
+  50%{opacity: 0.25;}
+  100%{opacity: 1;}
+}
+
+@keyframes bonus_an2 {
+  0%{opacity: 0.25;}
+  50%{opacity: 1;}
+  100%{opacity: 0.25;}
+}
+
+.bonus_button{
+  background-image: url('images/button_lime.png');
+}
+</style>
+	<script src="js/bonus.js" type="text/javascript"></script>
+	<script src="js/href.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js"></script>
+</head>
+
+<body onload="page_save()" style="background-image: url('images/white_bg.jpg');">
+
+<div id="loading">
+<div class="loading_div">
+<div class="loading_img" style="background-image: url('images/loading.png');"></div>
+</div>
+</div>
+
+<div class="top_div" style="background-image: url('images/top_bg.png');">
+
+<div class="top">
+<div class="head_icon" style="background-image: url('images/back_icon.png');" onclick="go_back()"></div>
+<div class="head_text"><b id="lan_head_text"></b></div>
+<div class="head_icon f_right" style="background-image: url('images/home_icon.png');" onclick="go_kingdom()"></div>
+</div>
+
+</div>
+
+<div class="page_menu" style="height: 85.5vh;">
+
+<div class="bonus_title"><b id="bonus_title_text"></b></div>
+
+<div id="bonus_board_1" class="bonus_board">
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a1" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a2" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a1" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a2" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a1" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a2" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a1" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a2" onclick="bonus_open()"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img bonus_a1" onclick="bonus_open()"></div></div>
+</div>
+
+<div id="bonus_board_2" class="bonus_board" style="display: none;">
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+<div class="bonus_b_div"><div class="bonus_b_img2"></div></div>
+</div>
+
+<div id="bonus_button" class="bonus_button" style="display: none;"><b id="button_text"></b></div>
+
+</div>
+
+</body>
+
+</html>
