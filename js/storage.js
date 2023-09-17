@@ -90,10 +90,10 @@ setInterval(function(){
 	document.getElementById("a_gold_hour").innerText = localStorage.getItem("a_gold");
 	document.getElementById("net_diamond_hour").innerText = localStorage.getItem("plus_diamond");
 	document.getElementById("c_diamond_hour").innerText = localStorage.getItem("plus_diamond");
-	document.getElementById("total_villager").innerText = Math.floor(Number(localStorage.getItem("t_farmer")) + Number(localStorage.getItem("t_woodcutter")) + Number(localStorage.getItem("t_goldminer")));
-	document.getElementById("total_farmer").innerText = localStorage.getItem("t_farmer");
-	document.getElementById("total_woodcutter").innerText = localStorage.getItem("t_woodcutter");
-	document.getElementById("total_gold_miner").innerText = localStorage.getItem("t_goldminer");
+	document.getElementById("total_villager").innerText = Math.floor(Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have")));
+	document.getElementById("total_farmer").innerText = localStorage.getItem("farmer_have");
+	document.getElementById("total_woodcutter").innerText = localStorage.getItem("woodcutter_have");
+	document.getElementById("total_gold_miner").innerText = localStorage.getItem("gold_miner_have");
 	document.getElementById("total_troops").innerText = Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("total_c1_troops")) + Number(localStorage.getItem("total_c2_troops")) + Number(localStorage.getItem("total_s_t_troops")));
 	document.getElementById("total_k_c_troops").innerText = localStorage.getItem("total_k_c_troops");
 	document.getElementById("total_c1_troops").innerText = localStorage.getItem("total_c1_troops");
