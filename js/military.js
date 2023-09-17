@@ -9,5 +9,8 @@ function page_save() {
 		document.getElementById("spy_text").innerText = " Spy";
 	}
 	
+	document.getElementById("center_total_troops").innerText = Number(localStorage.getItem("total_k_c_troops"));
+	document.getElementById("center_total_spy").innerText = Number(localStorage.getItem("spy_have"));
+	
 	document.getElementById("loading").style.display = "none";
 }
