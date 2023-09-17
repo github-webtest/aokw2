@@ -1,0 +1,178 @@
+<html>
+
+<head>
+	<title>Age of Kingdom Wars</title>
+	<meta name="author" content="XMAF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link url="style" rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/aokw_icon.png" type="image/icon">
+<style>
+@font-face{
+  font-family: Poppins-Medium;
+  src: url(font/Poppins-Medium.woff);
+}
+</style>
+	<script src="js/map.js" type="text/javascript"></script>
+	<script src="js/href.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js"></script>
+</head>
+
+<body onload="page_save()" style="background-color: white;">
+
+<style>
+.map_0{
+background-image: url('images/map_0.jpg');
+}
+
+.map_1{
+background-image: url('images/map_1.jpg');
+}
+
+.map_2{
+background-image: url('images/map_2.jpg');
+}
+
+.map_3{
+background-image: url('images/map_3.jpg');
+}
+
+.map_4{
+background-image: url('images/map_4.jpg');
+}
+
+.map_5{
+background-image: url('images/map_5.jpg');
+}
+
+.map_6{
+background-image: url('images/map_6.jpg');
+}
+
+.map_7{
+background-image: url('images/map_7.jpg');
+}
+
+.map_8{
+background-image: url('images/map_8.jpg');
+}
+
+.map_9{
+background-image: url('images/map_9.jpg');
+}
+
+.map_10{
+background-image: url('images/map_10.jpg');
+}
+
+.m_castle{
+background-image: url('images/map_0.jpg') !important;
+}
+
+.m_castle .map_img{
+background-image: url('images/map_castle.png') !important;
+}
+
+.m_castle .map_bottom{
+background-color: rgba(0,0,0,0.5);
+}
+</style>
+
+<div id="ldd" style="position: absolute;">
+<div id="loading" style="width: 100%; height: 100vh; text-align: center; justify-content: center; display: flex; position: fixed; z-index: 9999;">
+<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+</div>
+
+<div class="map_zoom_plus" onclick="map_zoom_p()">+</div>
+<div class="map_zoom_minus" onclick="map_zoom_m()">-</div>
+
+<div id="map_scroll" class="map_scroll">
+<div id="map" class="map">
+<div id="map_in_x1_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y1" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y2" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y3" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y4" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y5" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y6" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y7" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y8" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x1_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x2_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x3_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x4_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x5_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x6_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x7_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x8_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+<div id="map_in_x9_y9" class="map_in" style="background-image: url('images/map_default.jpg');"></div>
+</div>
+</div>
+
+</body>
+
+</html>
