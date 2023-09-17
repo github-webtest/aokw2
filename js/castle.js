@@ -1749,22 +1749,22 @@ function money(){
   
   var diamond = Math.floor((currentTime - localStorage.getItem("diamond_timer")) / 3600000);
   var timer_diamond = Math.floor(Number(diamond) * Number(localStorage.getItem("plus_diamond")));
-  var diamond_reward = Math.floor(Number(timer_diamond) + 100000 - Number(localStorage.getItem("diamond_cash")) + Number(localStorage.getItem("last_diamond_cash")));
+  var diamond_reward = Math.floor(Number(timer_diamond) + 1000000 - Number(localStorage.getItem("diamond_cash")) + Number(localStorage.getItem("last_diamond_cash")));
   localStorage.setItem("diamond", diamond_reward);
   
   var gold = Math.floor((currentTime - localStorage.getItem("gold_timer")) / 3600000);
   var timer_gold = Math.floor(Number(gold) * Number(localStorage.getItem("plus_gold")));
-  var gold_reward = Math.floor(Number(timer_gold) + 10000 - Number(localStorage.getItem("gold_cash")) + Number(localStorage.getItem("last_gold_cash")));
+  var gold_reward = Math.floor(Number(timer_gold) + 10000000 - Number(localStorage.getItem("gold_cash")) + Number(localStorage.getItem("last_gold_cash")));
   localStorage.setItem("gold", gold_reward);
   
   var food = Math.floor((currentTime - localStorage.getItem("food_timer")) / 3600000);
   var timer_food = Math.floor(Number(food) * Number(localStorage.getItem("plus_food")));
-  var food_reward = Math.floor(Number(timer_food) + 10000 - Number(localStorage.getItem("food_cash")) + Number(localStorage.getItem("last_food_cash")));
+  var food_reward = Math.floor(Number(timer_food) + 10000000 - Number(localStorage.getItem("food_cash")) + Number(localStorage.getItem("last_food_cash")));
   localStorage.setItem("food", food_reward);
   
   var wood = Math.floor((currentTime - localStorage.getItem("wood_timer")) / 3600000);
   var timer_wood = Math.floor(Number(wood) * Number(localStorage.getItem("plus_wood")));
-  var wood_reward = Math.floor(Number(timer_wood) + 10000 - Number(localStorage.getItem("wood_cash")) + Number(localStorage.getItem("last_wood_cash")));
+  var wood_reward = Math.floor(Number(timer_wood) + 10000000 - Number(localStorage.getItem("wood_cash")) + Number(localStorage.getItem("last_wood_cash")));
   localStorage.setItem("wood", wood_reward);
   
 }
