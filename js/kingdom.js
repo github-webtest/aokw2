@@ -1945,7 +1945,7 @@ setInterval(function(){
 	document.getElementById("age_points").innerText = localStorage.getItem("age_points");
 	if (Number(localStorage.getItem("age_points")) >= 500 && Number(localStorage.getItem("age_points")) < 1500) {
 		localStorage.setItem("age", 2);
-	} else if (Number(localStorage.getItem("age_points")) >= 1500 && Number(localStorage.getItem("age_points")) > 500 && Number(localStorage.getItem("age_points")) < 1500) {
+	} else if (Number(localStorage.getItem("age_points")) >= 1500 && Number(localStorage.getItem("age_points")) > 500 && Number(localStorage.getItem("age_points")) < 2500) {
 		localStorage.setItem("age", 3);
 	} else if (Number(localStorage.getItem("age_points")) >= 2500 && Number(localStorage.getItem("age_points")) > 1500 && Number(localStorage.getItem("age_points")) < 5000) {
 		localStorage.setItem("age", 4);
