@@ -1,0 +1,445 @@
+<html>
+
+<head>
+	<title>Age of Kingdom Wars</title>
+	<meta name="author" content="XMAF">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link url="style" rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<link rel="shortcut icon" href="images/aokw_icon.png" type="image/icon">
+<style>
+@font-face{
+  font-family: Poppins-Medium;
+  src: url(font/Poppins-Medium.woff);
+}
+</style>
+	<script src="js/barracks.js" type="text/javascript"></script>
+	<script src="js/href.js" type="text/javascript"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="json/json.js"></script>
+</head>
+
+<body onload="page_save()" style="background-image: url('images/white_bg.jpg');">
+
+<div id="loading" style="width: 100%; height: 100vh; text-align: center; justify-content: center; display: flex; position: fixed; background-color: rgba(0, 0, 0, 0.5); z-index: 9999;">
+<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+<div class="top_div" style="background-image: url('images/top_bg.png');">
+
+<div class="top">
+<div class="head_icon" style="background-image: url('images/back_icon.png');" onclick="go_back()"></div>
+<div class="head_text"><b id="lan_head_text"></b></div>
+<div class="head_icon f_right" style="background-image: url('images/home_icon.png');" onclick="go_kingdom()"></div>
+</div>
+
+</div>
+
+<div id="troops_info_bg" class="troops_info_bg">
+<div id="troops_info" class="troops_info" style="background-image: url('images/white_bg.jpg');">
+<div class="set_board_top"><div class="set_board_text"><b id="troops_text"></b></div><img class="set_board_img" src="images/x_icon.png" onclick="close_troops_info()"></div>
+
+<div class="troop_info_board_title"><b id="t_info"></b></div>
+<div class="troop_info_board">
+<div class="troop_info_board_in"><div class="troop_info_in_l"><b id="t_age"></b></div><div class="troop_info_in_r"><b id="age_t"></b></div></div>
+<div class="troop_info_board_in"><div class="troop_info_in_l"><b id="t_type"></b></div><div class="troop_info_in_r"><b id="type_t"></b></div></div>
+<div class="troop_info_board_in"><div class="troop_info_in_l"><b id="t_class"></b></div><div class="troop_info_in_r"><b id="class_t"></b></div></div>
+</div>
+
+<div class="troop_info_board_title"><b id="t_cost"></b></div>
+<div class="troop_info_board">
+<div id="produce_d1" class="troop_cost_head"><b id="produce_text"></b></div>
+<div id="produce_d2" class="troop_cost_in"><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/food_icon.png"><b id="p_food"></b></div><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/wood_icon.png"><b id="p_wood"></b></div><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/gold_icon.png"><b id="p_gold"></b></div><div class="troop_cost_in_1"><img class="troop_cost_img" src="images/diamond_icon.png"><b id="p_diamond"></b></div><div class="troop_cost_in_1_2"><img class="troop_cost_img" src="images/clock_icon.png"><b id="p_time"></b></div></div>
+<div class="troop_cost_head"><b id="upgrade_text"></b></div>
+<div class="troop_cost_in"><div class="troop_cost_in_2"><img class="troop_cost_img" src="images/gold_icon.png"><b id="u_gold"></b></div><div class="troop_cost_in_2"><img class="troop_cost_img" src="images/xp_icon.png"><b id="u_xp"></b></div><div class="troop_cost_in_2"><img class="troop_cost_img" src="images/clock_icon.png"><b id="u_time"></b></div></div>
+</div>
+
+<div class="troop_info_board_title"><b id="t_abilities"></b></div>
+<div class="troop_info_board">
+<div class="troop_info_board_in_t"><b id="abilities_text"></b></div>
+<div id="abilities_1" class="troop_info_board_in"><div class="troop_info_in_l"><b id="a1_title"></b></div><div class="troop_info_in_r"><b id="a1_text"></b></div></div>
+<div id="abilities_2" class="troop_info_board_in"><div class="troop_info_in_l"><b id="a2_title"></b></div><div class="troop_info_in_r"><b id="a2_text"></b></div></div>
+<div id="abilities_3" class="troop_info_board_in"><div class="troop_info_in_l"><b id="a3_title"></b></div><div class="troop_info_in_r"><b id="a3_text"></b></div></div>
+</div>
+
+</div>
+</div>
+
+<div class="page_menu" style="height: 85.5vh;">
+
+<div class="top_build">
+<div class="top_build_img" style="background-image: url('images/barracks_icon.png');"></div>
+<div class="top_build_text"><b id="build_top_text"></b></div>
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="spearmanx_text"></b><b id="total_spearman"></b><b> Lv: </b><b id="spearman_level"></b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/troop_1.png');" onclick="troop1_info()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right1" class="build_right">
+<div class="build_input_div"><input id="spearman_input" class="build_input" type="number" oninput="inputonlynumber(this)"><div class="b_input_max"><b>Max: </b><b id="max_spearman"></b></div></div>
+<div class="build_button" style="background-image: url('images/button_lime.png');" onclick="spearman_produce()"><b>+</b></div>
+<div class="build_button_text">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="spearman_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="spearman_next_level"></b></div>
+</div>
+</div>
+
+<div id="build_upper1" class="build_right" style="display: none;">
+
+<div id="build_up_board1">
+<div class="build_up_timer"><b id="spearman_up_d">00</b>:<b id="spearman_up_h">00</b>:<b id="spearman_up_m">00</b>:<b id="spearman_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="spearman_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="spearman_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+<div id="build_producer1" class="build_right" style="display: none;">
+
+<div id="build_produce_board1">
+<div class="build_up_timer" style="margin-top: 1vh;"><b>x</b><b id="spearman_trained_amount"></b><br><b id="spearman_produce_d">00</b>:<b id="spearman_produce_h">00</b>:<b id="spearman_produce_m">00</b>:<b id="spearman_produce_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="spearman_produce_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="spearman_produce_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b id="spearman_produce_speed_up_cost"></b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="archerx_text"></b><b id="total_archer"></b><b> Lv: </b><b id="archer_level"></b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/troop_2.png');" onclick="troop2_info()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right2" class="build_right">
+<div class="build_input_div"><input id="archer_input" class="build_input" type="number" oninput="inputonlynumber(this)"><div class="b_input_max"><b>Max: </b><b id="max_archer"></b></div></div>
+<div class="build_button" style="background-image: url('images/button_lime.png');" onclick="archer_produce()"><b>+</b></div>
+<div class="build_button_text">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="archer_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="archer_next_level"></b></div>
+</div>
+</div>
+
+<div id="build_upper2" class="build_right" style="display: none;">
+
+<div id="build_up_board2">
+<div class="build_up_timer"><b id="archer_up_d">00</b>:<b id="archer_up_h">00</b>:<b id="archer_up_m">00</b>:<b id="archer_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="archer_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="archer_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+<div id="build_producer2" class="build_right" style="display: none;">
+
+<div id="build_produce_board2">
+<div class="build_up_timer" style="margin-top: 1vh;"><b>x</b><b id="archer_trained_amount"></b><br><b id="archer_produce_d">00</b>:<b id="archer_produce_h">00</b>:<b id="archer_produce_m">00</b>:<b id="archer_produce_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="archer_produce_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="archer_produce_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b id="archer_produce_speed_up_cost"></b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="spyx_text"></b><b id="total_spy"></b><b> Lv: </b><b id="spy_level"></b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/spy.png');" onclick="troop3_info()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right3" class="build_right">
+<div class="build_input_div"><input id="spy_input" class="build_input" type="number" oninput="inputonlynumber(this)"><div class="b_input_max"><b>Max: </b><b id="max_spy"></b></div></div>
+<div class="build_button" style="background-image: url('images/button_lime.png');" onclick="spy_produce()"><b>+</b></div>
+<div class="build_button_text">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="spy_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="spy_next_level"></b></div>
+</div>
+</div>
+
+<div id="build_upper3" class="build_right" style="display: none;">
+
+<div id="build_up_board3">
+<div class="build_up_timer"><b id="spy_up_d">00</b>:<b id="spy_up_h">00</b>:<b id="spy_up_m">00</b>:<b id="spy_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="spy_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="spy_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+<div id="build_producer3" class="build_right" style="display: none;">
+
+<div id="build_produce_board3">
+<div class="build_up_timer" style="margin-top: 1vh;"><b>x</b><b id="spy_trained_amount"></b><br><b id="spy_produce_d">00</b>:<b id="spy_produce_h">00</b>:<b id="spy_produce_m">00</b>:<b id="spy_produce_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="spy_produce_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="spy_produce_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b id="spy_produce_speed_up_cost"></b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="cataphractx_text"></b><b id="total_cataphract"></b><b> Lv: </b><b id="cataphract_level"></b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/troop_3.png');" onclick="troop4_info()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right4" class="build_right">
+<div class="build_input_div"><input id="cataphract_input" class="build_input" type="number" oninput="inputonlynumber(this)"><div class="b_input_max"><b>Max: </b><b id="max_cataphract"></b></div></div>
+<div class="build_button" style="background-image: url('images/button_lime.png');" onclick="cataphract_produce()"><b>+</b></div>
+<div class="build_button_text">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="cataphract_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="cataphract_next_level"></b></div>
+</div>
+</div>
+
+<div id="build_upper4" class="build_right" style="display: none;">
+
+<div id="build_up_board4">
+<div class="build_up_timer"><b id="cataphract_up_d">00</b>:<b id="cataphract_up_h">00</b>:<b id="cataphract_up_m">00</b>:<b id="cataphract_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="cataphract_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="cataphract_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+<div id="build_producer4" class="build_right" style="display: none;">
+
+<div id="build_produce_board4">
+<div class="build_up_timer" style="margin-top: 1vh;"><b>x</b><b id="cataphract_trained_amount"></b><br><b id="cataphract_produce_d">00</b>:<b id="cataphract_produce_h">00</b>:<b id="cataphract_produce_m">00</b>:<b id="cataphract_produce_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="cataphract_produce_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="cataphract_produce_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b id="cataphract_produce_speed_up_cost"></b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="swordsmenx_text"></b><b id="total_swordsmen"></b><b> Lv: </b><b id="swordsmen_level"></b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/troop_4.png');" onclick="troop5_info()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right5" class="build_right">
+<div class="build_input_div"><input id="swordsmen_input" class="build_input" type="number" oninput="inputonlynumber(this)"><div class="b_input_max"><b>Max: </b><b id="max_swordsmen"></b></div></div>
+<div class="build_button" style="background-image: url('images/button_lime.png');" onclick="swordsmen_produce()"><b>+</b></div>
+<div class="build_button_text">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="swordsmen_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="swordsmen_next_level"></b></div>
+</div>
+</div>
+
+<div id="build_upper5" class="build_right" style="display: none;">
+
+<div id="build_up_board5">
+<div class="build_up_timer"><b id="swordsmen_up_d">00</b>:<b id="swordsmen_up_h">00</b>:<b id="swordsmen_up_m">00</b>:<b id="swordsmen_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="swordsmen_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="swordsmen_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+<div id="build_producer5" class="build_right" style="display: none;">
+
+<div id="build_produce_board5">
+<div class="build_up_timer" style="margin-top: 1vh;"><b>x</b><b id="swordsmen_trained_amount"></b><br><b id="swordsmen_produce_d">00</b>:<b id="swordsmen_produce_h">00</b>:<b id="swordsmen_produce_m">00</b>:<b id="swordsmen_produce_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="swordsmen_produce_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="swordsmen_produce_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b id="swordsmen_produce_speed_up_cost"></b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="crossbowmenx_text"></b><b id="total_crossbowmen"></b><b> Lv: </b><b id="crossbowmen_level"></b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/troop_5.png');" onclick="troop6_info()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right6" class="build_right">
+<div class="build_input_div"><input id="crossbowmen_input" class="build_input" type="number" oninput="inputonlynumber(this)"><div class="b_input_max"><b>Max: </b><b id="max_crossbowmen"></b></div></div>
+<div class="build_button" style="background-image: url('images/button_lime.png');" onclick="crossbowmen_produce()"><b>+</b></div>
+<div class="build_button_text">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="crossbowmen_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="crossbowmen_next_level"></b></div>
+</div>
+</div>
+
+<div id="build_upper6" class="build_right" style="display: none;">
+
+<div id="build_up_board6">
+<div class="build_up_timer"><b id="crossbowmen_up_d">00</b>:<b id="crossbowmen_up_h">00</b>:<b id="crossbowmen_up_m">00</b>:<b id="crossbowmen_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="crossbowmen_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="crossbowmen_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+<div id="build_producer6" class="build_right" style="display: none;">
+
+<div id="build_produce_board6">
+<div class="build_up_timer" style="margin-top: 1vh;"><b>x</b><b id="crossbowmen_trained_amount"></b><br><b id="crossbowmen_produce_d">00</b>:<b id="crossbowmen_produce_h">00</b>:<b id="crossbowmen_produce_m">00</b>:<b id="crossbowmen_produce_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="crossbowmen_produce_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="crossbowmen_produce_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b id="crossbowmen_produce_speed_up_cost"></b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div class="build_div">
+
+<div class="build_div_head_text"><b id="arquebusiersx_text"></b><b id="total_arquebusiers"></b><b> Lv: </b><b id="arquebusiers_level"></b><b>/20</b></div>
+<div class="build_left_img"><div class="build_img" style="background-image: url('images/troop_6.png');" onclick="troop7_info()"><div class="build_img_warning" style="background-image: url('images/warning_icon.png');"></div></div></div>
+<div id="build_right7" class="build_right">
+<div class="build_input_div"><input id="arquebusiers_input" class="build_input" type="number" oninput="inputonlynumber(this)"><div class="b_input_max"><b>Max: </b><b id="max_arquebusiers"></b></div></div>
+<div class="build_button" style="background-image: url('images/button_lime.png');" onclick="arquebusiers_produce()"><b>+</b></div>
+<div class="build_button_text">
+<div class="build_button" style="background-image: url('images/button_blue.png'); margin: 0px; width: 100%; line-height: 7vh;" onclick="arquebusiers_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><b>Lv: </b><b id="arquebusiers_next_level"></b></div>
+</div>
+</div>
+
+<div id="build_upper7" class="build_right" style="display: none;">
+
+<div id="build_up_board7">
+<div class="build_up_timer"><b id="arquebusiers_up_d">00</b>:<b id="arquebusiers_up_h">00</b>:<b id="arquebusiers_up_m">00</b>:<b id="arquebusiers_up_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="arquebusiers_up_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="arquebusiers_up_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b>50</b></div>
+</div>
+
+</div>
+</div>
+
+<div id="build_producer7" class="build_right" style="display: none;">
+
+<div id="build_produce_board7">
+<div class="build_up_timer" style="margin-top: 1vh;"><b>x</b><b id="arquebusiers_trained_amount"></b><br><b id="arquebusiers_produce_d">00</b>:<b id="arquebusiers_produce_h">00</b>:<b id="arquebusiers_produce_m">00</b>:<b id="arquebusiers_produce_s">00</b></b></div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="background-image: url('images/button_red.png'); margin: 0px; width: 100%;" onclick="arquebusiers_produce_cancel()"><b>x</b></div>
+<div class="build_button_text_bottom"><b>Cancel</b></div>
+</div>
+
+<div class="build_button_text_pu" style="margin-right: 1%; float: right;">
+<div class="build_button_pu" style="line-height: 6vh; background-image: url('images/button_blue.png'); margin: 0px; width: 100%;" onclick="arquebusiers_produce_speed_up()"><b>^</b></div>
+<div class="build_button_text_bottom"><img src="images/diamond_icon.png" style="width: 15px; height: 15px;"><b id="arquebusiers_produce_speed_up_cost"></b></div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div id="info_1" class="page_menu" style="height: 85.5vh; display: none;">
+
+</div>
+
+<div id="info_2" class="page_menu" style="height: 85.5vh; display: none;">
+
+</div>
+
+</body>
+
+</html>
