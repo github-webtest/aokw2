@@ -1798,9 +1798,9 @@ function cannon_up_speed_up() {
 setInterval(function(){
 	
 	document.getElementById("cannon_level").innerText = localStorage.getItem("cannon_level");
-	if (Number(localStorage.getItem("cannon_level")) != 20) {
+	if (Number(localStorage.getItem("cannon_level")) != 5) {
 	document.getElementById("cannon_next_level").innerText = Math.floor(Number(localStorage.getItem("cannon_level")) + 1);
-	} else if (Number(localStorage.getItem("cannon_level")) == 20) {
+	} else if (Number(localStorage.getItem("cannon_level")) == 5) {
 		document.getElementById("cannon_next_level").innerText = "Max";
 	}
 	var result1 = Math.floor(Number(localStorage.getItem("gold")) / 750);
