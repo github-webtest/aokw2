@@ -1918,18 +1918,683 @@ setInterval(function() {
 	document.getElementById("max_farmer").innerText = Math.floor(result1);
 	document.getElementById("max_woodcutter").innerText = Math.floor(result1);
 	document.getElementById("max_gold_miner").innerText = Math.floor(result1);
-	} else if (Math.floor(Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have"))) == 200) {
+	} else if (Math.floor(Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have"))) >= 200) {
 		document.getElementById("max_farmer").innerText = "0";
 		document.getElementById("max_woodcutter").innerText = "0";
 		document.getElementById("max_gold_miner").innerText = "0";
-	} else if (result1 > Math.floor(200 - Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have")))) {
-		document.getElementById("max_farmer").innerText = Math.floor(200 - Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have")));
-		document.getElementById("max_woodcutter").innerText = Math.floor(200 - Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have")));
-		document.getElementById("max_gold_miner").innerText = Math.floor(200 - Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have")));
+	} else if (result1 > Math.floor(200 - (Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have"))))) {
+		document.getElementById("max_farmer").innerText = Math.floor(200 - (Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have"))));
+		document.getElementById("max_woodcutter").innerText = Math.floor(200 - (Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have"))));
+		document.getElementById("max_gold_miner").innerText = Math.floor(200 - (Number(localStorage.getItem("farmer_have")) + Number(localStorage.getItem("woodcutter_have")) + Number(localStorage.getItem("gold_miner_have"))));
 	}
 }, 10);
 
-/* Money */
+/* Castle */
+
+setInterval(function(){
+	if (localStorage.getItem("castle_upper") == "on" || localStorage.getItem("knight_upper") == "on" || localStorage.getItem("imperial_spearman_upper") == "on" || localStorage.getItem("imperial_spearman_producer") == "on" || localStorage.getItem("knight_producer") == "on") {
+		
+		if (localStorage.getItem("castle_upper") == "on") {
+			
+		 if (localStorage.getItem("castle_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("castle_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("castle_upper");
+		    localStorage.removeItem("castle_up_time");
+		
+		    localStorage.setItem("castle_level", Math.floor(Number(localStorage.getItem("castle_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 50));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("knight_upper") == "on") {
+			
+		 if (localStorage.getItem("knight_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("knight_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("knight_upper");
+		    localStorage.removeItem("knight_up_time");
+		
+		    localStorage.setItem("knight_level", Math.floor(Number(localStorage.getItem("knight_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 6));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("imperial_spearman_upper") == "on") {
+			
+		 if (localStorage.getItem("imperial_spearman_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("imperial_spearman_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("imperial_spearman_upper");
+		    localStorage.removeItem("imperial_spearman_up_time");
+		
+		    localStorage.setItem("imperial_spearman_level", Math.floor(Number(localStorage.getItem("imperial_spearman_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 6));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("imperial_spearman_producer") == "on") {
+			
+		 if (localStorage.getItem("imperial_spearman_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("imperial_spearman_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("imperial_spearman_producer");
+		    localStorage.removeItem("imperial_spearman_produce_time");
+		
+		    localStorage.setItem("imperial_spearman_have", Math.floor(Number(localStorage.getItem("imperial_spearman_have")) + Number(localStorage.getItem("imperial_spearman_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("imperial_spearman_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("imperial_spearman_trained"))));
+			
+			localStorage.removeItem("imperial_spearman_trained");
+	
+			}
+		 }
+		
+		} else if (localStorage.getItem("knight_producer") == "on") {
+		
+		 if (localStorage.getItem("knight_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("knight_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("knight_producer");
+		    localStorage.removeItem("knight_produce_time");
+		
+		    localStorage.setItem("knight_have", Math.floor(Number(localStorage.getItem("knight_have")) + Number(localStorage.getItem("knight_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("knight_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("knight_trained"))));
+			
+			localStorage.removeItem("knight_trained");
+		
+			}
+		 }
+		
+		}
+		
+	}
+}, 10);
+
+/* academy */
+
+setInterval(function(){
+	
+	if (localStorage.getItem("farming_upper") == "on" || localStorage.getItem("lumbering_upper") == "on" || localStorage.getItem("mining_upper") == "on" || localStorage.getItem("blacksmithing_upper") == "on" || localStorage.getItem("riding_upper") == "on" || localStorage.getItem("geometry_upper") == "on" || localStorage.getItem("cartography_upper") == "on" || localStorage.getItem("spying_upper") == "on" || localStorage.getItem("masonry_upper") == "on") {
+		
+		if (localStorage.getItem("farming_upper") == "on") {
+			
+         if (localStorage.getItem("farming_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("farming_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("farming_upper");
+		    localStorage.removeItem("farming_up_time");
+		
+		    localStorage.setItem("farming_level", Math.floor(Number(localStorage.getItem("farming_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("lumbering_upper") == "on") {
+        
+		 if (localStorage.getItem("lumbering_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("lumbering_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("lumbering_upper");
+		    localStorage.removeItem("lumbering_up_time");
+		
+		    localStorage.setItem("lumbering_level", Math.floor(Number(localStorage.getItem("lumbering_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("mining_upper") == "on") {
+			
+		 if (localStorage.getItem("mining_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("mining_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("mining_upper");
+		    localStorage.removeItem("mining_up_time");
+		
+		    localStorage.setItem("mining_level", Math.floor(Number(localStorage.getItem("mining_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("blacksmithing_upper") == "on") {
+			
+		 if (localStorage.getItem("blacksmithing_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("blacksmithing_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("blacksmithing_upper");
+		    localStorage.removeItem("blacksmithing_up_time");
+		
+		    localStorage.setItem("blacksmithing_level", Math.floor(Number(localStorage.getItem("blacksmithing_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("riding_upper") == "on") {
+			
+		 if (localStorage.getItem("riding_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("riding_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("riding_upper");
+		    localStorage.removeItem("riding_up_time");
+		
+		    localStorage.setItem("riding_level", Math.floor(Number(localStorage.getItem("riding_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("geometry_upper") == "on") {
+			
+		 if (localStorage.getItem("geometry_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("geometry_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("geometry_upper");
+		    localStorage.removeItem("geometry_up_time");
+		
+		    localStorage.setItem("geometry_level", Math.floor(Number(localStorage.getItem("geometry_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("cartography_upper") == "on") {
+			
+		 if (localStorage.getItem("cartography_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("cartography_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("cartography_upper");
+		    localStorage.removeItem("cartography_up_time");
+		
+		    localStorage.setItem("cartography_level", Math.floor(Number(localStorage.getItem("cartography_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("spying_upper") == "on") {
+			
+		 if (localStorage.getItem("spying_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("spying_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("spying_upper");
+		    localStorage.removeItem("spying_up_time");
+		
+		    localStorage.setItem("spying_level", Math.floor(Number(localStorage.getItem("spying_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("masonry_upper") == "on") {
+			
+		 if (localStorage.getItem("masonry_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("masonry_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("masonry_upper");
+		    localStorage.removeItem("masonry_up_time");
+		
+		    localStorage.setItem("masonry_level", Math.floor(Number(localStorage.getItem("masonry_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
+		
+			}
+		 }
+		
+		}
+		
+	}
+	
+}, 10);
+
+/* wall */
+
+setInterval(function() {
+	if (localStorage.getItem("wall_upper") == "on" || localStorage.getItem("watchtower_upper") == "on" || localStorage.getItem("watchtower_producer") == "on") {
+		
+		if (localStorage.getItem("wall_upper") == "on") {
+			
+		 if (localStorage.getItem("wall_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("wall_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("wall_upper");
+		    localStorage.removeItem("wall_up_time");
+		
+		    localStorage.setItem("wall_level", Math.floor(Number(localStorage.getItem("wall_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 50));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("watchtower_upper") == "on") {
+			
+		 if (localStorage.getItem("watchtower_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("watchtower_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("watchtower_upper");
+		    localStorage.removeItem("watchtower_up_time");
+		
+		    localStorage.setItem("watchtower_level", Math.floor(Number(localStorage.getItem("watchtower_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 40));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("watchtower_producer") == "on") {
+			
+		 if (localStorage.getItem("watchtower_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("watchtower_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("watchtower_producer");
+		    localStorage.removeItem("watchtower_produce_time");
+		
+		    localStorage.setItem("watchtower_have", Math.floor(Number(localStorage.getItem("watchtower_have")) + Number(localStorage.getItem("watchtower_trained"))));
+		
+			}
+		 }
+		
+		}
+		
+	}
+
+}, 10);
+
+/* workshop */
+
+setInterval(function() {
+	if (localStorage.getItem("ballista_upper") == "on" || localStorage.getItem("ballista_producer") == "on" || localStorage.getItem("onager_upper") == "on" || localStorage.getItem("onager_producer") == "on" || localStorage.getItem("cannon_upper") == "on" || localStorage.getItem("cannon_producer") == "on") {
+		
+		if (localStorage.getItem("ballista_upper") == "on") {
+			
+		 if (localStorage.getItem("ballista_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("ballista_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("ballista_upper");
+		    localStorage.removeItem("ballista_up_time");
+		
+		    localStorage.setItem("ballista_level", Math.floor(Number(localStorage.getItem("ballista_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 40));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("ballista_producer") == "on") {
+			
+		 if (localStorage.getItem("ballista_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("ballista_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("ballista_producer");
+		    localStorage.removeItem("ballista_produce_time");
+		
+		    localStorage.setItem("ballista_have", Math.floor(Number(localStorage.getItem("ballista_have")) + Number(localStorage.getItem("ballista_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("ballista_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("ballista_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("onager_upper") == "on") {
+			
+	     if (localStorage.getItem("onager_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("onager_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("onager_upper");
+		    localStorage.removeItem("onager_up_time");
+		
+		    localStorage.setItem("onager_level", Math.floor(Number(localStorage.getItem("onager_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 40));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("onager_producer") == "on") {
+			
+		 if (localStorage.getItem("onager_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("onager_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("onager_producer");
+		    localStorage.removeItem("onager_produce_time");
+		
+		    localStorage.setItem("onager_have", Math.floor(Number(localStorage.getItem("onager_have")) + Number(localStorage.getItem("onager_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("onager_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("onager_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("cannon_upper") == "on") {
+			
+		 if (localStorage.getItem("cannon_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("cannon_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("cannon_upper");
+		    localStorage.removeItem("cannon_up_time");
+		
+		    localStorage.setItem("cannon_level", Math.floor(Number(localStorage.getItem("cannon_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 40));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("cannon_producer") == "on") {
+			
+		 if (localStorage.getItem("cannon_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("cannon_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("cannon_producer");
+		    localStorage.removeItem("cannon_produce_time");
+		
+		    localStorage.setItem("cannon_have", Math.floor(Number(localStorage.getItem("cannon_have")) + Number(localStorage.getItem("cannon_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("cannon_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("cannon_trained"))));
+		
+			}
+		 }
+		
+		}
+		
+	}
+
+}, 10);
+
+/* market */
+
+setInterval(function() {
+	if (localStorage.getItem("trade_cart_upper") == "on" || localStorage.getItem("trade_cart_producer") == "on") {
+		
+		if (localStorage.getItem("trade_cart_upper") == "on") {
+			
+		 if (localStorage.getItem("trade_cart_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("trade_cart_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("trade_cart_upper");
+		    localStorage.removeItem("trade_cart_up_time");
+		
+		    localStorage.setItem("trade_cart_level", Math.floor(Number(localStorage.getItem("trade_cart_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 50));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("trade_cart_producer") == "on") {
+			
+		 if (localStorage.getItem("trade_cart_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("trade_cart_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("trade_cart_producer");
+		    localStorage.removeItem("trade_cart_produce_time");
+		
+		    localStorage.setItem("trade_cart_have", Math.floor(Number(localStorage.getItem("trade_cart_have")) + Number(localStorage.getItem("trade_cart_trained"))));
+		
+			}
+		 }
+		
+		}
+		
+	}
+	
+}, 10);
+
+/* barracks */
+
+setInterval(function() {
+	if (localStorage.getItem("spearman_upper") == "on" || localStorage.getItem("spearman_producer") == "on" || localStorage.getItem("archer_upper") == "on" || localStorage.getItem("archer_producer") == "on" || localStorage.getItem("spy_upper") == "on" || localStorage.getItem("spy_producer") == "on" || localStorage.getItem("cataphract_upper") == "on" || localStorage.getItem("cataphract_producer") == "on" || localStorage.getItem("swordsmen_upper") == "on" || localStorage.getItem("swordsmen_producer") == "on" || localStorage.getItem("crossbowmen_upper") == "on" || localStorage.getItem("crossbowmen_producer") == "on" || localStorage.getItem("arquebusiers_upper") == "on" || localStorage.getItem("arquebusiers_producer") == "on") {
+		
+		if (localStorage.getItem("spearman_upper") == "on") {
+			
+		 if (localStorage.getItem("spearman_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("spearman_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("spearman_upper");
+		    localStorage.removeItem("spearman_up_time");
+		
+		    localStorage.setItem("spearman_level", Math.floor(Number(localStorage.getItem("spearman_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 4));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("spearman_producer") == "on") {
+			
+		 if (localStorage.getItem("spearman_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("spearman_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("spearman_producer");
+		    localStorage.removeItem("spearman_produce_time");
+		
+		    localStorage.setItem("spearman_have", Math.floor(Number(localStorage.getItem("spearman_have")) + Number(localStorage.getItem("spearman_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("spearman_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("spearman_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("archer_upper") == "on") {
+			
+		 if (localStorage.getItem("archer_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("archer_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("archer_upper");
+		    localStorage.removeItem("archer_up_time");
+		
+		    localStorage.setItem("archer_level", Math.floor(Number(localStorage.getItem("archer_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 4));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("archer_producer") == "on") {
+			
+		 if (localStorage.getItem("archer_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("archer_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("archer_producer");
+		    localStorage.removeItem("archer_produce_time");
+		
+		    localStorage.setItem("archer_have", Math.floor(Number(localStorage.getItem("archer_have")) + Number(localStorage.getItem("archer_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("archer_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("archer_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("spy_upper") == "on") {
+			
+		 if (localStorage.getItem("spy_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("spy_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("spy_upper");
+		    localStorage.removeItem("spy_up_time");
+		
+		    localStorage.setItem("spy_level", Math.floor(Number(localStorage.getItem("spy_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 4));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("spy_producer") == "on") {
+			
+		 if (localStorage.getItem("spy_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("spy_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("spy_producer");
+		    localStorage.removeItem("spy_produce_time");
+		
+		    localStorage.setItem("spy_have", Math.floor(Number(localStorage.getItem("spy_have")) + Number(localStorage.getItem("spy_trained"))));
+			localStorage.setItem("total_k_c_spy", Math.floor(Number(localStorage.getItem("total_k_c_spy")) + Number(localStorage.getItem("spy_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("spy_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("cataphract_upper") == "on") {
+			
+		 if (localStorage.getItem("cataphract_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("cataphract_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("cataphract_upper");
+		    localStorage.removeItem("cataphract_up_time");
+		
+		    localStorage.setItem("cataphract_level", Math.floor(Number(localStorage.getItem("cataphract_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 4));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("cataphract_producer") == "on") {
+			
+		 if (localStorage.getItem("cataphract_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("cataphract_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("cataphract_producer");
+		    localStorage.removeItem("cataphract_produce_time");
+		
+		    localStorage.setItem("cataphract_have", Math.floor(Number(localStorage.getItem("cataphract_have")) + Number(localStorage.getItem("cataphract_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("cataphract_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("cataphract_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("swordsmen_upper") == "on") {
+			
+		 if (localStorage.getItem("swordsmen_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("swordsmen_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("swordsmen_upper");
+		    localStorage.removeItem("swordsmen_up_time");
+		
+		    localStorage.setItem("swordsmen_level", Math.floor(Number(localStorage.getItem("swordsmen_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 4));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("swordsmen_producer") == "on") {
+			
+		 if (localStorage.getItem("swordsmen_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("swordsmen_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("swordsmen_producer");
+		    localStorage.removeItem("swordsmen_produce_time");
+		
+		    localStorage.setItem("swordsmen_have", Math.floor(Number(localStorage.getItem("swordsmen_have")) + Number(localStorage.getItem("swordsmen_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("swordsmen_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("swordsmen_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("crossbowmen_upper") == "on") {
+			
+		 if (localStorage.getItem("crossbowmen_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("crossbowmen_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("crossbowmen_upper");
+		    localStorage.removeItem("crossbowmen_up_time");
+		
+		    localStorage.setItem("crossbowmen_level", Math.floor(Number(localStorage.getItem("crossbowmen_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 4));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("crossbowmen_producer") == "on") {
+			
+		 if (localStorage.getItem("crossbowmen_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("crossbowmen_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("crossbowmen_producer");
+		    localStorage.removeItem("crossbowmen_produce_time");
+		
+		    localStorage.setItem("crossbowmen_have", Math.floor(Number(localStorage.getItem("crossbowmen_have")) + Number(localStorage.getItem("crossbowmen_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("crossbowmen_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("crossbowmen_trained"))));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("arquebusiers_upper") == "on") {
+			
+		 if (localStorage.getItem("arquebusiers_up_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("arquebusiers_up_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("arquebusiers_upper");
+		    localStorage.removeItem("arquebusiers_up_time");
+		
+		    localStorage.setItem("arquebusiers_level", Math.floor(Number(localStorage.getItem("arquebusiers_level")) + 1));
+			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 4));
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("arquebusiers_producer") == "on") {
+			
+		 if (localStorage.getItem("arquebusiers_produce_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("arquebusiers_produce_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("arquebusiers_producer");
+		    localStorage.removeItem("arquebusiers_produce_time");
+		
+		    localStorage.setItem("arquebusiers_have", Math.floor(Number(localStorage.getItem("arquebusiers_have")) + Number(localStorage.getItem("arquebusiers_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("arquebusiers_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("arquebusiers_trained"))));
+		
+			}
+		 }
+		
+		}
+		
+	}
+	
+}, 10);
+
+/* money */
 
 function money(){
 	
@@ -1946,7 +2611,7 @@ function money(){
   localStorage.setItem("gold", gold_reward);
   
   var food = Math.floor((currentTime - localStorage.getItem("food_timer")) / 3600000);
-  var timer_food = Math.floor(Number(food) * Number(localStorage.getItem("plus_food")));
+  var timer_food = Math.floor(Number(food) * (Number(localStorage.getItem("plus_food")) - Number(localStorage.getItem("minus_food"))));
   var food_reward = Math.floor(Number(timer_food) + 10000000 - Number(localStorage.getItem("food_cash")) + Number(localStorage.getItem("last_food_cash")));
   localStorage.setItem("food", food_reward);
   
@@ -1957,7 +2622,7 @@ function money(){
   
 }
 
-setInterval(money, 10);
+setInterval(money, 20);
 
 /* defense bonus */
 
