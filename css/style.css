@@ -2221,3 +2221,10 @@ body{
 	text-align: center;
 	cursor: pointer;
 }
+
+@keyframes red_alert {
+	0% {color: red;}
+	50% {color: red;}
+	51% {color: white;}
+	100% {color: white;}
+}
