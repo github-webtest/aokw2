@@ -195,6 +195,8 @@ setInterval(function(){
 		    localStorage.removeItem("imperial_spearman_produce_time");
 		
 		    localStorage.setItem("imperial_spearman_have", Math.floor(Number(localStorage.getItem("imperial_spearman_have")) + Number(localStorage.getItem("imperial_spearman_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("imperial_spearman_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("imperial_spearman_trained"))));
 			
 			localStorage.removeItem("imperial_spearman_trained");
 		
@@ -234,6 +236,8 @@ setInterval(function(){
 		    localStorage.removeItem("knight_produce_time");
 		
 		    localStorage.setItem("knight_have", Math.floor(Number(localStorage.getItem("knight_have")) + Number(localStorage.getItem("knight_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("knight_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("knight_trained"))));
 			
 			localStorage.removeItem("knight_trained");
 		
@@ -799,6 +803,8 @@ setInterval(function() {
 		    localStorage.removeItem("ballista_produce_time");
 		
 		    localStorage.setItem("ballista_have", Math.floor(Number(localStorage.getItem("ballista_have")) + Number(localStorage.getItem("ballista_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("ballista_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("ballista_trained"))));
 		
 		    document.getElementById("workshop_timer").style.display = "none";
 		
@@ -874,6 +880,8 @@ setInterval(function() {
 		    localStorage.removeItem("onager_produce_time");
 		
 		    localStorage.setItem("onager_have", Math.floor(Number(localStorage.getItem("onager_have")) + Number(localStorage.getItem("onager_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("onager_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("onager_trained"))));
 		
 		    document.getElementById("workshop_timer").style.display = "none";
 		
@@ -949,6 +957,8 @@ setInterval(function() {
 		    localStorage.removeItem("cannon_produce_time");
 		
 		    localStorage.setItem("cannon_have", Math.floor(Number(localStorage.getItem("cannon_have")) + Number(localStorage.getItem("cannon_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("cannon_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("cannon_trained"))));
 		
 		    document.getElementById("workshop_timer").style.display = "none";
 		
@@ -1121,6 +1131,8 @@ setInterval(function() {
 		    localStorage.removeItem("spearman_produce_time");
 		
 		    localStorage.setItem("spearman_have", Math.floor(Number(localStorage.getItem("spearman_have")) + Number(localStorage.getItem("spearman_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("spearman_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("spearman_trained"))));
 		
 		    document.getElementById("barracks_timer").style.display = "none";
 		
@@ -1196,6 +1208,8 @@ setInterval(function() {
 		    localStorage.removeItem("archer_produce_time");
 		
 		    localStorage.setItem("archer_have", Math.floor(Number(localStorage.getItem("archer_have")) + Number(localStorage.getItem("archer_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("archer_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("archer_trained"))));
 		
 		    document.getElementById("barracks_timer").style.display = "none";
 		
@@ -1271,6 +1285,8 @@ setInterval(function() {
 		    localStorage.removeItem("spy_produce_time");
 		
 		    localStorage.setItem("spy_have", Math.floor(Number(localStorage.getItem("spy_have")) + Number(localStorage.getItem("spy_trained"))));
+			localStorage.setItem("total_k_c_spy", Math.floor(Number(localStorage.getItem("total_k_c_spy")) + Number(localStorage.getItem("spy_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("spy_trained"))));
 		
 		    document.getElementById("barracks_timer").style.display = "none";
 		
@@ -1346,6 +1362,8 @@ setInterval(function() {
 		    localStorage.removeItem("cataphract_produce_time");
 		
 		    localStorage.setItem("cataphract_have", Math.floor(Number(localStorage.getItem("cataphract_have")) + Number(localStorage.getItem("cataphract_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("cataphract_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("cataphract_trained"))));
 		
 		    document.getElementById("barracks_timer").style.display = "none";
 		
@@ -1421,6 +1439,8 @@ setInterval(function() {
 		    localStorage.removeItem("swordsmen_produce_time");
 		
 		    localStorage.setItem("swordsmen_have", Math.floor(Number(localStorage.getItem("swordsmen_have")) + Number(localStorage.getItem("swordsmen_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("swordsmen_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("swordsmen_trained"))));
 		
 		    document.getElementById("barracks_timer").style.display = "none";
 		
@@ -1496,6 +1516,8 @@ setInterval(function() {
 		    localStorage.removeItem("crossbowmen_produce_time");
 		
 		    localStorage.setItem("crossbowmen_have", Math.floor(Number(localStorage.getItem("crossbowmen_have")) + Number(localStorage.getItem("crossbowmen_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("crossbowmen_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("crossbowmen_trained"))));
 		
 		    document.getElementById("barracks_timer").style.display = "none";
 		
@@ -1571,6 +1593,8 @@ setInterval(function() {
 		    localStorage.removeItem("arquebusiers_produce_time");
 		
 		    localStorage.setItem("arquebusiers_have", Math.floor(Number(localStorage.getItem("arquebusiers_have")) + Number(localStorage.getItem("arquebusiers_trained"))));
+			localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) + Number(localStorage.getItem("arquebusiers_trained"))));
+			localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) + Number(localStorage.getItem("arquebusiers_trained"))));
 		
 		    document.getElementById("barracks_timer").style.display = "none";
 		
@@ -1583,7 +1607,7 @@ setInterval(function() {
 	
 }, 10);
 
-/* market */
+/* village */
 
 setInterval(function() {
 	if (localStorage.getItem("farmer_upper") == "on" || localStorage.getItem("farmer_producer") == "on" || localStorage.getItem("woodcutter_upper") == "on" || localStorage.getItem("woodcutter_producer") == "on" || localStorage.getItem("gold_miner_upper") == "on" || localStorage.getItem("gold_miner_producer") == "on") {
@@ -1924,7 +1948,7 @@ function money(){
   localStorage.setItem("gold", gold_reward);
   
   var food = Math.floor((currentTime - localStorage.getItem("food_timer")) / 3600000);
-  var timer_food = Math.floor(Number(food) * Number(localStorage.getItem("plus_food")));
+  var timer_food = Math.floor(Number(food) * (Number(localStorage.getItem("plus_food")) - Number(localStorage.getItem("minus_food"))));
   var food_reward = Math.floor(Number(timer_food) + 10000000 - Number(localStorage.getItem("food_cash")) + Number(localStorage.getItem("last_food_cash")));
   localStorage.setItem("food", food_reward);
   
@@ -1952,7 +1976,6 @@ setInterval(function(){
 	} else if (Number(localStorage.getItem("age_points")) >= 5000) {
 		localStorage.setItem("age", 5);
 	}
-	localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("knight_have")) + Number(localStorage.getItem("imperial_spearman_have")) + Number(localStorage.getItem("ballista_have")) + Number(localStorage.getItem("onager_have")) + Number(localStorage.getItem("cannon_have")) + Number(localStorage.getItem("spearman_have")) + Number(localStorage.getItem("archer_have")) + Number(localStorage.getItem("cataphract_have")) + Number(localStorage.getItem("swordsmen_have")) + Number(localStorage.getItem("crossbowmen_have")) + Number(localStorage.getItem("arquebusiers_have"))))
 }, 10);
 
 function formatNumber(num){
@@ -1973,7 +1996,7 @@ function formatNumber(num){
 
 setInterval(function(){
 	
-	if (100000 <= Number(localStorage.getItem("gold")) && Number(localStorage.getItem("age")) == 1) {
+	if (100000000000000000 <= Number(localStorage.getItem("gold")) && Number(localStorage.getItem("age")) == 1) {
 		
 		localStorage.setItem("gold_cash", 0);
 		localStorage.setItem("last_gold_cash", 90000);
@@ -1992,4 +2015,12 @@ setInterval(function(){
 	results = Math.round(results * 100) / 100;
 	localStorage.setItem("defense_bonus", results);
 	
+}, 10);
+
+/* troop dead */
+
+setInterval(function() {
+	if (Math.floor(Number(localStorage.getItem("plus_food")) - Number(localStorage.getItem("minus_food"))) <= 0) {
+		document.getElementById("food").style.animation = "red_alert 3s infinite";
+	}
 }, 10);
