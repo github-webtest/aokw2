@@ -83,8 +83,8 @@ setInterval(function(){
 	document.getElementById("net_food_hour").innerText = Math.floor(((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100) - Number(localStorage.getItem("minus_food")));
 	document.getElementById("plus_food_hour").innerText = Math.floor((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100);
 	document.getElementById("minus_food_hour").innerText = Number(localStorage.getItem("minus_food"));
-	document.getElementById("net_wood_hour").innerText = Number(localStorage.getItem("plus_wood"));
-	document.getElementById("net_gold_hour").innerText = Number(localStorage.getItem("plus_gold"));
+	document.getElementById("net_wood_hour").innerText = Math.floor((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100)) / 100);
+	document.getElementById("net_gold_hour").innerText = Math.floor((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100)) / 100);
 	document.getElementById("k_c_gold_hour").innerText = Number(localStorage.getItem("k_c_gold"));
 	document.getElementById("c_gold_hour").innerText = Number(localStorage.getItem("c_gold"));
 	document.getElementById("a_gold_hour").innerText = Number(localStorage.getItem("a_gold"));
