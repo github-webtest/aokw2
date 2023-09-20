@@ -2013,7 +2013,7 @@ setInterval(function(){
 	
 	if (0 > Number(localStorage.getItem("food"))) {
 		
-		localStorage.setItem("last_troop_dead", Math.floor(-1 * (((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100) - Number(localStorage.getItem("minus_food"))));
+		localStorage.setItem("last_troop_dead", Math.floor(-1 * (((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100) - Number(localStorage.getItem("minus_food")))));
 		
 		if (Number(localStorage.getItem("last_troop_dead")) > 0) {
 			
