@@ -80,8 +80,8 @@ function page_save() {
 
 setInterval(function(){
 	
-	document.getElementById("net_food_hour").innerText = Math.floor(Number(localStorage.getItem("plus_food")) - Number(localStorage.getItem("minus_food")));
-	document.getElementById("plus_food_hour").innerText = Number(localStorage.getItem("plus_food"));
+	document.getElementById("net_food_hour").innerText = Math.floor(((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100) - Number(localStorage.getItem("minus_food")));
+	document.getElementById("plus_food_hour").innerText = Math.floor((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100);
 	document.getElementById("minus_food_hour").innerText = Number(localStorage.getItem("minus_food"));
 	document.getElementById("net_wood_hour").innerText = Number(localStorage.getItem("plus_wood"));
 	document.getElementById("net_gold_hour").innerText = Number(localStorage.getItem("plus_gold"));
@@ -981,23 +981,23 @@ function money(){
   localStorage.setItem("diamond", diamond_reward);
   
   var gold = Math.floor((currentTime - localStorage.getItem("gold_timer")) / 3600000);
-  var timer_gold = Math.floor(Number(gold) * Number(localStorage.getItem("plus_gold")));
+  var timer_gold = Math.floor(Number(gold) * ((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100)) / 100));
   var gold_reward = Math.floor(Number(timer_gold) + 10000000 - Number(localStorage.getItem("gold_cash")) + Number(localStorage.getItem("last_gold_cash")));
   localStorage.setItem("gold", gold_reward);
   
   var food = Math.floor((currentTime - localStorage.getItem("food_timer")) / 3600000);
-  var timer_food = Math.floor(Number(food) * (Number(localStorage.getItem("plus_food")) - Number(localStorage.getItem("minus_food"))));
+  var timer_food = Math.floor(Number(food) * (((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100) - Number(localStorage.getItem("minus_food"))));
   var food_reward = Math.floor(Number(timer_food) + 10000000 - Number(localStorage.getItem("food_cash")) + Number(localStorage.getItem("last_food_cash")));
   localStorage.setItem("food", food_reward);
   
   var wood = Math.floor((currentTime - localStorage.getItem("wood_timer")) / 3600000);
-  var timer_wood = Math.floor(Number(wood) * Number(localStorage.getItem("plus_wood")));
+  var timer_wood = Math.floor(Number(wood) * ((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100)) / 100));
   var wood_reward = Math.floor(Number(timer_wood) + 10000000 - Number(localStorage.getItem("wood_cash")) + Number(localStorage.getItem("last_wood_cash")));
   localStorage.setItem("wood", wood_reward);
   
 }
 
-setInterval(money, 20);
+setInterval(money, 10);
 
 /* defense bonus */
 
