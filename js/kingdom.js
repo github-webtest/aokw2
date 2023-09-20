@@ -2007,6 +2007,250 @@ setInterval(function(){
 	
 }, 10);
 
+/* dead troop */
+
+setInterval(function(){
+	
+	if (0 > Number(localStorage.getItem("food"))) {
+		
+		localStorage.setItem("last_troop_dead", Math.floor(-1 * (Number(localStorage.getItem("food")) - Number(localStorage.getItem("minus")))));
+		
+		if (Number(localStorage.getItem("last_troop_dead")) > 0) {
+			
+			if (Number(localStorage.getItem("spearman_have")) > 0) {
+				
+				if (Number(localStorage.getItem("spearman_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("spearman_have", Math.floor(Number(localStorage.getItem("spearman_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("spearman_have")) < Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("spearman_have", Math.floor(Number(localStorage.getItem("spearman_have")) - Number(localStorage.getItem("spearman_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("spearman_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("spearman_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("archer_have")) > 0 && Number(localStorage.getItem("spearman_have")) == 0) {
+				
+				if (Number(localStorage.getItem("archer_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("archer_have", Math.floor(Number(localStorage.getItem("archer_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("archer_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("archer_have")) > 0) {
+					
+					localStorage.setItem("archer_have", Math.floor(Number(localStorage.getItem("archer_have")) - Number(localStorage.getItem("archer_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("archer_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("archer_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("spy_have")) > 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("spy_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("spy_have", Math.floor(Number(localStorage.getItem("spy_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("spy_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("spy_have")) > 0) {
+					
+					localStorage.setItem("spy_have", Math.floor(Number(localStorage.getItem("spy_have")) - Number(localStorage.getItem("spy_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("spy_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("spy_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("knight_have")) > 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("knight_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("knight_have", Math.floor(Number(localStorage.getItem("knight_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("knight_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("knight_have")) > 0) {
+					
+					localStorage.setItem("knight_have", Math.floor(Number(localStorage.getItem("knight_have")) - Number(localStorage.getItem("knight_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("knight_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("knight_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("ballista_have")) > 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("ballista_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("ballista_have", Math.floor(Number(localStorage.getItem("ballista_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("ballista_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("ballista_have")) > 0) {
+					
+					localStorage.setItem("ballista_have", Math.floor(Number(localStorage.getItem("ballista_have")) - Number(localStorage.getItem("ballista_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("ballista_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("ballista_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("cataphract_have")) > 0 && Number(localStorage.getItem("ballista_have")) == 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("cataphract_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("cataphract_have", Math.floor(Number(localStorage.getItem("cataphract_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("cataphract_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("cataphract_have")) > 0) {
+					
+					localStorage.setItem("cataphract_have", Math.floor(Number(localStorage.getItem("cataphract_have")) - Number(localStorage.getItem("cataphract_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("cataphract_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("cataphract_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("swordsmen_have")) > 0 && Number(localStorage.getItem("cataphract_have")) == 0 && Number(localStorage.getItem("ballista_have")) == 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("swordsmen_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("swordsmen_have", Math.floor(Number(localStorage.getItem("swordsmen_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("swordsmen_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("swordsmen_have")) > 0) {
+					
+					localStorage.setItem("swordsmen_have", Math.floor(Number(localStorage.getItem("swordsmen_have")) - Number(localStorage.getItem("swordsmen_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("swordsmen_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("swordsmen_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("crossbowmen_have")) > 0 && Number(localStorage.getItem("swordsmen_have")) == 0 && Number(localStorage.getItem("cataphract_have")) == 0 && Number(localStorage.getItem("ballista_have")) == 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("crossbowmen_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("crossbowmen_have", Math.floor(Number(localStorage.getItem("crossbowmen_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("crossbowmen_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("crossbowmen_have")) > 0) {
+					
+					localStorage.setItem("crossbowmen_have", Math.floor(Number(localStorage.getItem("crossbowmen_have")) - Number(localStorage.getItem("crossbowmen_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("crossbowmen_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("crossbowmen_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("onager_have")) > 0 && Number(localStorage.getItem("crossbowmen_have")) == 0 && Number(localStorage.getItem("swordsmen_have")) == 0 && Number(localStorage.getItem("cataphract_have")) == 0 && Number(localStorage.getItem("ballista_have")) == 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("onager_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("onager_have", Math.floor(Number(localStorage.getItem("onager_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("onager_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("onager_have")) > 0) {
+					
+					localStorage.setItem("onager_have", Math.floor(Number(localStorage.getItem("onager_have")) - Number(localStorage.getItem("onager_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("onager_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("onager_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("imperial_spearman_have")) > 0 && Number(localStorage.getItem("onager_have")) == 0 && Number(localStorage.getItem("crossbowmen_have")) == 0 && Number(localStorage.getItem("swordsmen_have")) == 0 && Number(localStorage.getItem("cataphract_have")) == 0 && Number(localStorage.getItem("ballista_have")) == 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("imperial_spearman_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("imperial_spearman_have", Math.floor(Number(localStorage.getItem("imperial_spearman_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("imperial_spearman_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("imperial_spearman_have")) > 0) {
+					
+					localStorage.setItem("imperial_spearman_have", Math.floor(Number(localStorage.getItem("imperial_spearman_have")) - Number(localStorage.getItem("imperial_spearman_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("imperial_spearman_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("imperial_spearman_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("arquebusiers_have")) > 0 && Number(localStorage.getItem("imperial_spearman_have")) == 0 && Number(localStorage.getItem("onager_have")) == 0 && Number(localStorage.getItem("crossbowmen_have")) == 0 && Number(localStorage.getItem("swordsmen_have")) == 0 && Number(localStorage.getItem("cataphract_have")) == 0 && Number(localStorage.getItem("ballista_have")) == 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("arquebusiers_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("arquebusiers_have", Math.floor(Number(localStorage.getItem("arquebusiers_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("arquebusiers_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("arquebusiers_have")) > 0) {
+					
+					localStorage.setItem("arquebusiers_have", Math.floor(Number(localStorage.getItem("arquebusiers_have")) - Number(localStorage.getItem("arquebusiers_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("arquebusiers_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("arquebusiers_have"))));
+					
+				}
+				
+			} else if (Number(localStorage.getItem("cannon_have")) > 0 && Number(localStorage.getItem("arquebusiers_have")) == 0 && Number(localStorage.getItem("imperial_spearman_have")) == 0 && Number(localStorage.getItem("onager_have")) == 0 && Number(localStorage.getItem("crossbowmen_have")) == 0 && Number(localStorage.getItem("swordsmen_have")) == 0 && Number(localStorage.getItem("cataphract_have")) == 0 && Number(localStorage.getItem("ballista_have")) == 0 && Number(localStorage.getItem("knight_have")) == 0 && Number(localStorage.getItem("spy_have")) == 0 && Number(localStorage.getItem("spearman_have")) == 0 && Number(localStorage.getItem("archer_have")) == 0) {
+				
+				if (Number(localStorage.getItem("cannon_have")) >= Number(localStorage.getItem("last_troop_dead"))) {
+					
+					localStorage.setItem("cannon_have", Math.floor(Number(localStorage.getItem("cannon_have")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.removeItem("last_troop_dead");
+					
+				} else if (Number(localStorage.getItem("cannon_have")) < Number(localStorage.getItem("last_troop_dead")) && Number(localStorage.getItem("cannon_have")) > 0) {
+					
+					localStorage.setItem("cannon_have", Math.floor(Number(localStorage.getItem("cannon_have")) - Number(localStorage.getItem("cannon_have"))));
+					localStorage.setItem("minus_food", Math.floor(Number(localStorage.getItem("minus_food")) - Number(localStorage.getItem("cannon_have"))));
+					localStorage.setItem("total_k_c_troops", Math.floor(Number(localStorage.getItem("total_k_c_troops")) - Number(localStorage.getItem("last_troop_dead"))));
+					localStorage.setItem("last_troop_dead", Math.floor(Number(localStorage.getItem("last_troop_dead")) - Number(localStorage.getItem("cannon_have"))));
+					
+				}
+				
+			}
+			
+		} else if (Number(localStorage.getItem("last_troop_dead")) == 0) {
+			
+			localStorage.removeItem("last_troop_dead");
+			
+		}
+		
+		localStorage.setItem("food_cash", 10000000);
+		localStorage.setItem("last_food_cash", 0);
+		startTime = new Date().getTime();
+	    localStorage.setItem("food_timer", startTime);
+		
+		
+	}
+	
+}, 10);
+
 /* defense bonus */
 
 setInterval(function(){
