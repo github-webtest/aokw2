@@ -2228,3 +2228,95 @@ body{
 	51% {color: white;}
 	100% {color: white;}
 }
+
+.village_boost_board{
+	width: 95.5%;
+    height: 45vh;
+	margin-left: 2%;
+    margin-top: 1vh;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 0.5vh;
+    background-color: rgba(0,0,0,0.1);
+    float: left;
+}
+
+.village_boost_div{
+	width: 100%;
+    height: 14vh;
+    margin-top: 1vh;
+    float: left;
+}
+
+.boost_build_right{
+	width: 70%;
+	padding-top: 1vh;
+	margin-top: 1vh;
+	margin-left: 3%;
+	margin-bottom: 1vh;
+	float: left;
+}
+
+.boost_text{
+	width: 60%;
+	height: 10vh;
+	margin: auto;
+	word-wrap: break-word;
+}
+
+.village_kick_title{
+	width: 100%;
+	margin-top: 0.5vh;
+	text-align: center;
+	color: #D2042D;
+	font-size: 2.5vh;
+	float: left;
+}
+
+.villager_kick_board{
+	width: 100%;
+	height: 25vh;
+	float: left;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.villager_kick_left{
+	width: 60%;
+	height: 20vh;
+	margin: auto;
+	margin-left: 2%;
+	float: left;
+}
+
+.villager_kick_right{
+	width: 34%;
+	height: 20vh;
+	margin: auto;
+	margin-right: 2%;
+	float: left;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+
+.radio_div{
+	width: 100%;
+	height: 5vh;
+	margin-top: 1vh;
+	line-height: 5vh;
+	float: left;
+}
+
+.village_kick_input_radio {
+    width: 4vh;
+    height: 4vh;
+    float: left;
+}
+
+.kick_input{
+	width: 100%;
+	margin-bottom: 1vh;
+	height: 4vh;
+	float: left;
+}
