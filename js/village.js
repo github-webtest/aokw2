@@ -20,6 +20,10 @@ function page_save() {
 		document.getElementById("25_fpt").innerText = "Increases food production for 7 days.";
 		document.getElementById("25_wpt").innerText = "Increases wood production for 7 days.";
 		document.getElementById("25_gpt").innerText = "Increases gold production for 7 days.";
+		document.getElementById("villager_kick_text").innerText = "Kick Villagers";
+		document.getElementById("farmer_kick_text").innerText = "Farmer";
+		document.getElementById("woodcutter_kick_text").innerText = "Woodcutter";
+		document.getElementById("miner_kick_text").innerText = "Gold Miner";
 	}
 	
 	document.getElementById("loading").style.display = "none";
@@ -224,6 +228,73 @@ function build3_info() {
 		}
 		
     });
+}
+
+/* kick */
+
+function villager_kick() {
+	
+	var kick_amount = document.getElementById("villager_kick_input").value;
+	
+	if (kick_amount > 0) {
+		
+		if (document.getElementById("farmer_kick").checked == true && document.getElementById("woodcutter_kick").checked == false && document.getElementById("miner_kick").checked == false) {
+			
+			if (Number(localStorage.getItem("farmer_have")) > 0 && Number(localStorage.getItem("farmer_have")) >= Number(kick_amount)) {
+				
+				var current = Date.now();
+	            var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
+	            var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food")))));
+	            var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
+	            localStorage.setItem("last_food_cash", plusplus);
+	            localStorage.setItem("food_timer", current);
+				
+				localStorage.setItem("plus_food", Math.floor(Number(localStorage.getItem("plus_food")) - ((Number(kick_amount) * 30) + ((Number(localStorage.getItem("farmer_level")) * 3) * Number(kick_amount)))));
+				localStorage.setItem("farmer_have", Math.floor(Number(localStorage.getItem("farmer_have")) - Number(kick_amount)));
+				
+				location.reload();
+			}
+			
+		} else if (document.getElementById("farmer_kick").checked == false && document.getElementById("woodcutter_kick").checked == true && document.getElementById("miner_kick").checked == false) {
+			
+			if (Number(localStorage.getItem("woodcutter_have")) > 0 && Number(localStorage.getItem("woodcutter_have")) >= Number(kick_amount)) {
+				
+				var current = Date.now();
+	            var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
+	            var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100)));
+	            var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
+	            localStorage.setItem("last_wood_cash", plusplus);
+	            localStorage.setItem("wood_timer", current);
+				
+				localStorage.setItem("plus_wood", Math.floor(Number(localStorage.getItem("plus_wood")) - ((Number(kick_amount) * 20) + ((Number(localStorage.getItem("woodcutter_level")) * 2) * Number(kick_amount)))));
+				localStorage.setItem("woodcutter_have", Math.floor(Number(localStorage.getItem("woodcutter_have")) - Number(kick_amount)));
+				
+				location.reload();
+			}
+			
+		} else if (document.getElementById("farmer_kick").checked == false && document.getElementById("woodcutter_kick").checked == false && document.getElementById("miner_kick").checked == true) {
+			
+			if (Number(localStorage.getItem("gold_miner_have")) > 0 && Number(localStorage.getItem("gold_miner_have")) >= Number(kick_amount)) {
+				
+				var current = Date.now();
+	            var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
+	            var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100)));
+	            var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
+	            localStorage.setItem("last_gold_cash", plusplus);
+	            localStorage.setItem("gold_timer", current);
+				
+				localStorage.setItem("plus_gold", Math.floor(Number(localStorage.getItem("plus_gold")) - ((Number(kick_amount) * 10) + ((Number(localStorage.getItem("gold_miner_level")) * 1) * Number(kick_amount)))));
+				localStorage.setItem("gold_miner_have", Math.floor(Number(localStorage.getItem("gold_miner_have")) - Number(kick_amount)));
+				
+				location.reload();
+				
+			}
+			
+		}
+			
+	}
+	
+	
 }
 
 /* boost */
