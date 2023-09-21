@@ -14,6 +14,12 @@ function page_save() {
 		document.getElementById("produce_text").innerText = "Produce";
 		document.getElementById("upgrade_text").innerText = "Upgrade";
 		document.getElementById("t_abilities").innerText = "Abilities";
+		document.getElementById("25_fp").innerText = "25% more food production";
+		document.getElementById("25_wp").innerText = "25% more wood production";
+		document.getElementById("25_gp").innerText = "25% more gold production";
+		document.getElementById("25_fpt").innerText = "Increases food production for 7 days.";
+		document.getElementById("25_wpt").innerText = "Increases wood production for 7 days.";
+		document.getElementById("25_gpt").innerText = "Increases gold production for 7 days.";
 	}
 	
 	document.getElementById("loading").style.display = "none";
@@ -220,6 +226,257 @@ function build3_info() {
     });
 }
 
+/* boost */
+
+function farmer_boost() {
+	
+	if (Number(localStorage.getItem("diamond")) >= 100) {
+		
+		var now = new Date();
+		var new_time = now.setSeconds(now.getSeconds() + 604800);
+		var ms_time = now.getTime();
+		localStorage.setItem("farmer_boost_time", ms_time);
+		
+		localStorage.setItem("diamond_cash", Math.floor(Number(localStorage.getItem("diamond_cash")) + 100));
+		
+		var current = Date.now();
+	    var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
+	    var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food"))) - (Number(localStorage.getItem("farmer_trained")) * 30 + (Number(localStorage.getItem("farmer_trained")) * (Number(localStorage.getItem("farmer_level")) * 3)))));
+	    var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
+	    localStorage.setItem("last_food_cash", plusplus);
+	    localStorage.setItem("food_timer", current);
+		
+		localStorage.setItem("farmer_b_f", 25);
+		
+		localStorage.setItem("farmer_boost", "on");
+		
+		location.reload();
+		
+	}
+	
+}
+
+function woodcutter_boost() {
+	
+	if (Number(localStorage.getItem("diamond")) >= 100) {
+		
+		var now = new Date();
+		var new_time = now.setSeconds(now.getSeconds() + 604800);
+		var ms_time = now.getTime();
+		localStorage.setItem("woodcutter_boost_time", ms_time);
+		
+		localStorage.setItem("diamond_cash", Math.floor(Number(localStorage.getItem("diamond_cash")) + 100));
+		
+		var current = Date.now();
+	    var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
+	    var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100)));
+	    var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
+	    localStorage.setItem("last_wood_cash", plusplus);
+	    localStorage.setItem("wood_timer", current);
+		
+		localStorage.setItem("woodcutter_b_f", 25);
+		
+		localStorage.setItem("woodcutter_boost", "on");
+		
+		location.reload();
+		
+	}
+	
+}
+
+function gold_miner_boost() {
+	
+	if (Number(localStorage.getItem("diamond")) >= 100) {
+		
+		var now = new Date();
+		var new_time = now.setSeconds(now.getSeconds() + 604800);
+		var ms_time = now.getTime();
+		localStorage.setItem("gold_miner_boost_time", ms_time);
+		
+		localStorage.setItem("diamond_cash", Math.floor(Number(localStorage.getItem("diamond_cash")) + 100));
+		
+		var current = Date.now();
+	    var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
+	    var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100)));
+	    var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
+	    localStorage.setItem("last_gold_cash", plusplus);
+	    localStorage.setItem("gold_timer", current);
+		
+		localStorage.setItem("gold_miner_b_f", 25);
+		
+		localStorage.setItem("gold_miner_boost", "on");
+		
+		location.reload();
+		
+	}
+	
+}
+
+setInterval(function() {
+	if (localStorage.getItem("farmer_boost") == "on" || localStorage.getItem("woodcutter_boost") == "on" || localStorage.getItem("gold_miner_boost") == "on") {
+		
+		if (localStorage.getItem("farmer_boost") == "on") {
+			
+		document.getElementById("build_boostr1").style.display = "none";
+		document.getElementById("build_boostr2").style.display = "none";
+		document.getElementById("build_boostr3").style.display = "none";
+		document.getElementById("build_boost1").style.display = "block";
+		document.getElementById("build_boost2").style.display = "block";
+		document.getElementById("build_boost3").style.display = "block";
+		
+		document.getElementById("build_boost_board2").style.display = "none";
+		document.getElementById("build_boost_board3").style.display = "none";
+		
+		var fb_ms = Math.floor(Number(localStorage.getItem("farmer_boost_time")) - Date.now());
+		var fb_s = Math.floor(fb_ms / 1000);
+		var fb_m = Math.floor(fb_s / 60);
+		fb_s = fb_s % 60;
+		var fb_h = Math.floor(fb_m / 60);
+		fb_m = fb_m % 60;
+		var fb_d = Math.floor(fb_h / 24);
+		fb_h = fb_h % 24;
+		
+		fb_d = fb_d.toString().padStart(2, "0");
+		fb_h = fb_h.toString().padStart(2, "0");
+		fb_m = fb_m.toString().padStart(2, "0");
+		fb_s = fb_s.toString().padStart(2, "0");
+		
+		document.getElementById("farmer_boost_d").innerText = fb_d;
+		document.getElementById("farmer_boost_h").innerText = fb_h;
+		document.getElementById("farmer_boost_m").innerText = fb_m;
+		document.getElementById("farmer_boost_s").innerText = fb_s;
+			
+		 if (localStorage.getItem("farmer_boost_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("farmer_boost_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("farmer_boost");
+		    localStorage.removeItem("farmer_boost_time");
+			
+			var current = Date.now();
+	        var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
+	        var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food")))));
+	        var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
+	        localStorage.setItem("last_food_cash", plusplus);
+	        localStorage.setItem("food_timer", current);
+		
+		    localStorage.setItem("farmer_b_f", 0);
+			
+			location.reload();
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("woodcutter_boost") == "on") {
+			
+		document.getElementById("build_boostr1").style.display = "none";
+		document.getElementById("build_boostr2").style.display = "none";
+		document.getElementById("build_boostr3").style.display = "none";
+		document.getElementById("build_boost1").style.display = "block";
+		document.getElementById("build_boost2").style.display = "block";
+		document.getElementById("build_boost3").style.display = "block";
+		
+		document.getElementById("build_boost_board1").style.display = "none";
+		document.getElementById("build_boost_board3").style.display = "none";
+		
+		var wb_ms = Math.floor(Number(localStorage.getItem("woodcutter_boost_time")) - Date.now());
+		var wb_s = Math.floor(wb_ms / 1000);
+		var wb_m = Math.floor(wb_s / 60);
+		wb_s = wb_s % 60;
+		var wb_h = Math.floor(wb_m / 60);
+		wb_m = wb_m % 60;
+		var wb_d = Math.floor(wb_h / 24);
+		wb_h = wb_h % 24;
+		
+		wb_d = wb_d.toString().padStart(2, "0");
+		wb_h = wb_h.toString().padStart(2, "0");
+		wb_m = wb_m.toString().padStart(2, "0");
+		wb_s = wb_s.toString().padStart(2, "0");
+		
+		document.getElementById("woodcutter_boost_d").innerText = wb_d;
+		document.getElementById("woodcutter_boost_h").innerText = wb_h;
+		document.getElementById("woodcutter_boost_m").innerText = wb_m;
+		document.getElementById("woodcutter_boost_s").innerText = wb_s;
+			
+		 if (localStorage.getItem("woodcutter_boost_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("woodcutter_boost_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("woodcutter_boost");
+		    localStorage.removeItem("woodcutter_boost_time");
+			
+			var current = Date.now();
+	        var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
+	        var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100)));
+	        var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
+	        localStorage.setItem("last_wood_cash", plusplus);
+	        localStorage.setItem("wood_timer", current);
+			
+			localStorage.setItem("woodcutter_b_f", 0);
+			
+			location.reload();
+		
+			}
+		 }
+		
+		} else if (localStorage.getItem("gold_miner_boost") == "on") {
+			
+		document.getElementById("build_boostr1").style.display = "none";
+		document.getElementById("build_boostr2").style.display = "none";
+		document.getElementById("build_boostr3").style.display = "none";
+		document.getElementById("build_boost1").style.display = "block";
+		document.getElementById("build_boost2").style.display = "block";
+		document.getElementById("build_boost3").style.display = "block";
+		
+		document.getElementById("build_boost_board1").style.display = "none";
+		document.getElementById("build_boost_board2").style.display = "none";
+		
+		var gb_ms = Math.floor(Number(localStorage.getItem("gold_miner_boost_time")) - Date.now());
+		var gb_s = Math.floor(gb_ms / 1000);
+		var gb_m = Math.floor(gb_s / 60);
+		gb_s = gb_s % 60;
+		var gb_h = Math.floor(gb_m / 60);
+		gb_m = gb_m % 60;
+		var gb_d = Math.floor(gb_h / 24);
+		gb_h = gb_h % 24;
+		
+		gb_d = gb_d.toString().padStart(2, "0");
+		gb_h = gb_h.toString().padStart(2, "0");
+		gb_m = gb_m.toString().padStart(2, "0");
+		gb_s = gb_s.toString().padStart(2, "0");
+		
+		document.getElementById("gold_miner_boost_d").innerText = gb_d;
+		document.getElementById("gold_miner_boost_h").innerText = gb_h;
+		document.getElementById("gold_miner_boost_m").innerText = gb_m;
+		document.getElementById("gold_miner_boost_s").innerText = gb_s;
+			
+		 if (localStorage.getItem("gold_miner_boost_time") != null) {
+			
+			if (Math.floor(Number(localStorage.getItem("gold_miner_boost_time")) - Date.now()) < 0) {
+		
+		    localStorage.removeItem("gold_miner_boost");
+		    localStorage.removeItem("gold_miner_boost_time");
+			
+			var current = Date.now();
+	        var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
+	        var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100)));
+	        var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
+	        localStorage.setItem("last_gold_cash", plusplus);
+	        localStorage.setItem("gold_timer", current);
+			
+			localStorage.setItem("gold_miner_b_f", 0);
+			
+			location.reload();
+		
+			}
+		 }
+		
+		}
+		
+	}
+	
+}, 10);
+
 /* farmer up and produce */
 
 function farmer_produce() {
@@ -305,7 +562,7 @@ setInterval(function(){
 			
 		var current = Date.now();
 	    var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
-	    var food_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_food")) - (Number(localStorage.getItem("farmer_trained")) * 30 + (Number(localStorage.getItem("farmer_trained")) * (Number(localStorage.getItem("farmer_level")) * 3)))));
+	    var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food"))) - (Number(localStorage.getItem("farmer_trained")) * 30 + (Number(localStorage.getItem("farmer_trained")) * (Number(localStorage.getItem("farmer_level")) * 3)))));
 	    var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
 	    localStorage.setItem("last_food_cash", plusplus);
 	    localStorage.setItem("food_timer", current);
@@ -690,7 +947,7 @@ setInterval(function(){
 			
 		var current = Date.now();
 		var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
-		var food_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_food")) - 3 * Number(localStorage.getItem("farmer_have"))));
+		var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food"))) - 3 * Number(localStorage.getItem("farmer_have"))));
 		var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
 		localStorage.setItem("last_food_cash", plusplus);
 		localStorage.setItem("food_timer", current);
@@ -743,7 +1000,7 @@ function farmer_up_speed_up() {
 			
 		var current = Date.now();
 		var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
-		var food_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_food")) - 3 * Number(localStorage.getItem("farmer_have"))));
+		var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food"))) - 3 * Number(localStorage.getItem("farmer_have"))));
 		var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
 		localStorage.setItem("last_food_cash", plusplus);
 		localStorage.setItem("food_timer", current);
@@ -769,7 +1026,7 @@ function farmer_produce_speed_up() {
 			
 	var current = Date.now();
 	var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
-	var food_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_food")) - (Number(localStorage.getItem("farmer_trained")) * 30 + (Number(localStorage.getItem("farmer_trained")) * (Number(localStorage.getItem("farmer_level")) * 3)))));
+	var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food"))) - (Number(localStorage.getItem("farmer_trained")) * 30 + (Number(localStorage.getItem("farmer_trained")) * (Number(localStorage.getItem("farmer_level")) * 3)))));
 	var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
 	localStorage.setItem("last_food_cash", plusplus);
 	localStorage.setItem("food_timer", current);
@@ -869,7 +1126,7 @@ setInterval(function(){
 			
 		var current = Date.now();
 	    var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
-	    var wood_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_wood")) - (Number(localStorage.getItem("woodcutter_trained")) * 20 + (Number(localStorage.getItem("woodcutter_trained")) * (Number(localStorage.getItem("woodcutter_level")) * 2)))));
+	    var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100) - (Number(localStorage.getItem("woodcutter_trained")) * 20 + (Number(localStorage.getItem("woodcutter_trained")) * (Number(localStorage.getItem("woodcutter_level")) * 2)))));
 	    var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
 	    localStorage.setItem("last_wood_cash", plusplus);
 	    localStorage.setItem("wood_timer", current);
@@ -1254,7 +1511,7 @@ setInterval(function(){
 			
 		var current = Date.now();
 		var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
-		var wood_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_wood")) - 2 * Number(localStorage.getItem("woodcutter_have"))));
+		var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100) - 2 * Number(localStorage.getItem("woodcutter_have"))));
 		var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
 		localStorage.setItem("last_wood_cash", plusplus);
 		localStorage.setItem("wood_timer", current);
@@ -1307,7 +1564,7 @@ function woodcutter_up_speed_up() {
 			
 		var current = Date.now();
 		var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
-		var wood_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_wood")) - 2 * Number(localStorage.getItem("woodcutter_have"))));
+		var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100) - 2 * Number(localStorage.getItem("woodcutter_have"))));
 		var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
 		localStorage.setItem("last_wood_cash", plusplus);
 		localStorage.setItem("wood_timer", current);
@@ -1333,7 +1590,7 @@ function woodcutter_produce_speed_up() {
 			
 	var current = Date.now();
 	var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
-	var wood_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_wood")) - (Number(localStorage.getItem("woodcutter_trained")) * 20 + (Number(localStorage.getItem("woodcutter_trained")) * (Number(localStorage.getItem("woodcutter_level")) * 2)))));
+	var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100) - (Number(localStorage.getItem("woodcutter_trained")) * 20 + (Number(localStorage.getItem("woodcutter_trained")) * (Number(localStorage.getItem("woodcutter_level")) * 2)))));
 	var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
 	localStorage.setItem("last_wood_cash", plusplus);
 	localStorage.setItem("wood_timer", current);
@@ -1433,7 +1690,7 @@ setInterval(function(){
 			
 		var current = Date.now();
 	    var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
-	    var gold_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_gold")) - (Number(localStorage.getItem("gold_miner_trained")) * 10 + (Number(localStorage.getItem("gold_miner_trained")) * (Number(localStorage.getItem("gold_miner_level")) * 1)))));
+	    var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100) - (Number(localStorage.getItem("gold_miner_trained")) * 10 + (Number(localStorage.getItem("gold_miner_trained")) * (Number(localStorage.getItem("gold_miner_level")) * 1)))));
 	    var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
 	    localStorage.setItem("last_gold_cash", plusplus);
 	    localStorage.setItem("gold_timer", current);
@@ -1818,7 +2075,7 @@ setInterval(function(){
 			
 		var current = Date.now();
 		var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
-		var gold_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_gold")) - 1 * Number(localStorage.getItem("gold_miner_have"))));
+		var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100) - 1 * Number(localStorage.getItem("gold_miner_have"))));
 		var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
 		localStorage.setItem("last_gold_cash", plusplus);
 		localStorage.setItem("gold_timer", current);
@@ -1871,7 +2128,7 @@ function gold_miner_up_speed_up() {
 			
 		var current = Date.now();
 		var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
-		var gold_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_gold")) - 1 * Number(localStorage.getItem("gold_miner_have"))));
+		var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100) - 1 * Number(localStorage.getItem("gold_miner_have"))));
 		var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
 		localStorage.setItem("last_gold_cash", plusplus);
 		localStorage.setItem("gold_timer", current);
@@ -1897,7 +2154,7 @@ function gold_miner_produce_speed_up() {
 			
 	var current = Date.now();
 	var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
-	var gold_t = Math.floor(Number(elapsedTime) * (Number(localStorage.getItem("plus_gold")) - (Number(localStorage.getItem("gold_miner_trained")) * 10 + (Number(localStorage.getItem("gold_miner_trained")) * (Number(localStorage.getItem("gold_miner_level")) * 1)))));
+	var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100) - (Number(localStorage.getItem("gold_miner_trained")) * 10 + (Number(localStorage.getItem("gold_miner_trained")) * (Number(localStorage.getItem("gold_miner_level")) * 1)))));
 	var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
 	localStorage.setItem("last_gold_cash", plusplus);
 	localStorage.setItem("gold_timer", current);
@@ -2034,6 +2291,13 @@ setInterval(function(){
 		
 		    localStorage.removeItem("farming_upper");
 		    localStorage.removeItem("farming_up_time");
+			
+			var current = Date.now();
+	        var elapsedTime = Math.floor((current - localStorage.getItem("food_timer")) / 3600000);
+	        var food_t = Math.floor(Number(elapsedTime) * ((((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food")))));
+	        var plusplus = Math.floor(Number(localStorage.getItem("last_food_cash")) + Number(food_t));
+	        localStorage.setItem("last_food_cash", plusplus);
+	        localStorage.setItem("food_timer", current);
 		
 		    localStorage.setItem("farming_level", Math.floor(Number(localStorage.getItem("farming_level")) + 1));
 			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
@@ -2049,6 +2313,13 @@ setInterval(function(){
 		
 		    localStorage.removeItem("lumbering_upper");
 		    localStorage.removeItem("lumbering_up_time");
+			
+			var current = Date.now();
+	        var elapsedTime = Math.floor((current - localStorage.getItem("wood_timer")) / 3600000);
+	        var wood_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100)));
+	        var plusplus = Math.floor(Number(localStorage.getItem("last_wood_cash")) + Number(wood_t));
+	        localStorage.setItem("last_wood_cash", plusplus);
+	        localStorage.setItem("wood_timer", current);
 		
 		    localStorage.setItem("lumbering_level", Math.floor(Number(localStorage.getItem("lumbering_level")) + 1));
 			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
@@ -2064,6 +2335,13 @@ setInterval(function(){
 		
 		    localStorage.removeItem("mining_upper");
 		    localStorage.removeItem("mining_up_time");
+			
+			var current = Date.now();
+	        var elapsedTime = Math.floor((current - localStorage.getItem("gold_timer")) / 3600000);
+	        var gold_t = Math.floor(Number(elapsedTime) * (((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100)));
+	        var plusplus = Math.floor(Number(localStorage.getItem("last_gold_cash")) + Number(gold_t));
+	        localStorage.setItem("last_gold_cash", plusplus);
+	        localStorage.setItem("gold_timer", current);
 		
 		    localStorage.setItem("mining_level", Math.floor(Number(localStorage.getItem("mining_level")) + 1));
 			localStorage.setItem("age_points", Math.floor(Number(localStorage.getItem("age_points")) + 10));
@@ -2606,17 +2884,17 @@ function money(){
   localStorage.setItem("diamond", diamond_reward);
   
   var gold = Math.floor((currentTime - localStorage.getItem("gold_timer")) / 3600000);
-  var timer_gold = Math.floor(Number(gold) * ((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100)) / 100));
+  var timer_gold = Math.floor(Number(gold) * ((Number(localStorage.getItem("plus_gold")) * (Number(localStorage.getItem("mining_level")) + 100 + Number(localStorage.getItem("gold_miner_b_f")))) / 100));
   var gold_reward = Math.floor(Number(timer_gold) + 10000000 - Number(localStorage.getItem("gold_cash")) + Number(localStorage.getItem("last_gold_cash")));
   localStorage.setItem("gold", gold_reward);
   
   var food = Math.floor((currentTime - localStorage.getItem("food_timer")) / 3600000);
-  var timer_food = Math.floor(Number(food) * (((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100)) / 100) - Number(localStorage.getItem("minus_food"))));
+  var timer_food = Math.floor(Number(food) * (((Number(localStorage.getItem("plus_food")) * (Number(localStorage.getItem("farming_level")) + 100 + Number(localStorage.getItem("farmer_b_f")))) / 100) - Number(localStorage.getItem("minus_food"))));
   var food_reward = Math.floor(Number(timer_food) + 10000000 - Number(localStorage.getItem("food_cash")) + Number(localStorage.getItem("last_food_cash")));
   localStorage.setItem("food", food_reward);
   
   var wood = Math.floor((currentTime - localStorage.getItem("wood_timer")) / 3600000);
-  var timer_wood = Math.floor(Number(wood) * ((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100)) / 100));
+  var timer_wood = Math.floor(Number(wood) * ((Number(localStorage.getItem("plus_wood")) * (Number(localStorage.getItem("lumbering_level")) + 100 + Number(localStorage.getItem("woodcutter_b_f")))) / 100));
   var wood_reward = Math.floor(Number(timer_wood) + 10000000 - Number(localStorage.getItem("wood_cash")) + Number(localStorage.getItem("last_wood_cash")));
   localStorage.setItem("wood", wood_reward);
   
