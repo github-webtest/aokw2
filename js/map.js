@@ -5,6 +5,16 @@ function page_save() {
 	document.getElementById("map_scroll").scrollLeft += Math.floor((localStorage.getItem("random_castle_x") * 80) - (window.screen.width / 2 + 40));
 	document.getElementById("map_scroll").scrollTop += Math.floor((localStorage.getItem("random_castle_y") * 80) - (window.screen.height / 2 + 40));
 	
+	var run_number = 0;
+		
+    setInterval(function() {
+	    run_number += 0; run_number++
+	      
+		    document.getElementById('map_div_x' + localStorage.getItem("colony" + run_number + "_x") + '_y' + localStorage.getItem("colony" + run_number + "_y") + '').className += " m_colony";
+	        document.getElementById('map_text_x' + localStorage.getItem("colony" + run_number + "_x") + '_y' + localStorage.getItem("colony" + run_number + "_y") + '').innerText += localStorage.getItem("king_name");
+
+    }, 10);
+	
 }
 
 var p_castle = 1;
