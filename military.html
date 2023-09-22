@@ -20,10 +20,8 @@
 
 <body onload="page_save()" style="background-image: url('images/white_bg.jpg');">
 
-<div id="loading">
-<div class="loading_div">
-<div class="loading_img" style="background-image: url('images/loading.png');"></div>
-</div>
+<div id="loading" style="width: 100%; height: 100vh; text-align: center; justify-content: center; display: flex; position: fixed; background-color: rgba(0, 0, 0, 0.5); z-index: 9999;">
+<div class="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
 
 <div class="top_div" style="background-image: url('images/top_bg.png');">
@@ -44,13 +42,18 @@
 
 <div id="page_menu1" class="page_menu">
 
-<div class="mn_divs_head"><b id="m_head_text"></b><b>(1)</b></div>
+<div class="mn_divs_head"><b id="m_head_text"></b><b>(</b><b id="own_places"></b><b>)</b></div>
 <div class="mn_div_line" style="background-image: url('images/line.png');"></div>
 
 <div class="mn_div">
 <div class="mn_divs_head"><b id="kingdom_center_text" style="color: blue; cursor: pointer;"></b></div>
 <div class="mn_div_in"><div class="mn_div_in_text"><b id="center_total_troops"></b><b id="army_unit_text"></b></div><div class="mn_div_in_img" style="background-image: url('images/next_icon.png');"></div></div>
 <div class="mn_div_in"><div class="mn_div_in_text"><b id="center_total_spy"></b><b id="spy_text"></b></div><div class="mn_div_in_img" style="background-image: url('images/next_icon.png');"></div></div>
+</div>
+
+<div id="establish_colony_div" class="build_button_text" style="width: 28%; margin-left: 36%; margin-top: 8vh; display: none;" onclick="establish_colony()">
+<div class="build_button" style="background-image: url('images/button_lime.png'); margin: 0px; width: 100%; line-height: 7vh; text-align: center;"><b>+</b></div>
+<div class="build_button_text_bottom"><b id="establish_colony_text"></b></div>
 </div>
 
 <div id="content_1" class="contents">
