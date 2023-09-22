@@ -77,9 +77,10 @@ function login() {
 		localStorage.setItem("spying_level", 0);
 		localStorage.setItem("masonry_level", 0);
 		localStorage.setItem("academy_capacity", 50);
+		localStorage.setItem("own_places", 1);
 		
-		var random_castle_x = Math.floor(Math.random() * 135) + 1;
-		var random_castle_y = Math.floor(Math.random() * 135) + 1;
+		var random_castle_x = Math.floor(Math.random() * 132) + 3;
+		var random_castle_y = Math.floor(Math.random() * 132) + 3;
 		
 		localStorage.setItem("random_castle_x", random_castle_x);
 		localStorage.setItem("random_castle_y", random_castle_y);
