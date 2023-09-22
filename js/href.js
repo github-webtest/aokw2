@@ -40,6 +40,8 @@ function go_map() {
 	if (sessionStorage.getItem("quests_on") != 0) {
 		sessionStorage.setItem("quests_on", 0);
 	}
+	localStorage.setItem("random_cc_x", Number(localStorage.getItem("random_castle_x")));
+	localStorage.setItem("random_cc_y", Number(localStorage.getItem("random_castle_y")));
 	location.href = "map.html";
 }
 
@@ -63,6 +65,7 @@ function go_kingdom() {
 		sessionStorage.setItem("quests_p", 0);
 		sessionStorage.setItem("quests_b", 0);
 	}
+	location.href = "kingdom.html";
 	location.href = "kingdom.html";
 }
 

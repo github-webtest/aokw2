@@ -23,6 +23,8 @@ function page_save() {
 		
 	}
 	
+	document.getElementById("king_name_input").value = localStorage.getItem("king_name");
+	
 	document.getElementById("loading").style.display = "none";
 }
 

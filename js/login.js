@@ -27,7 +27,6 @@ function login() {
 		localStorage.setItem("worlds", 0);
 		localStorage.setItem("quests_number", 1);
 		localStorage.setItem("age_points", 0);
-		localStorage.setItem("king_name", "Player");
 		localStorage.setItem("castle_level", 0);
 		localStorage.setItem("plus_food", 100);
 		localStorage.setItem("minus_food", 0);
@@ -81,6 +80,11 @@ function login() {
 		
 		var random_castle_x = Math.floor(Math.random() * 132) + 3;
 		var random_castle_y = Math.floor(Math.random() * 132) + 3;
+		
+		var random_1 = Math.floor(Number(random_castle_x) + ((Number(random_castle_y) - 1) * 135));
+		
+		localStorage.setItem("king_name", "AoKW_" + random_1 + "");
+		localStorage.setItem("player_id", random_1);
 		
 		localStorage.setItem("random_castle_x", random_castle_x);
 		localStorage.setItem("random_castle_y", random_castle_y);
