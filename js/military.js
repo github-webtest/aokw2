@@ -7,12 +7,66 @@ function page_save() {
 		document.getElementById("kingdom_center_text").innerText = "Kingdom Center";
 		document.getElementById("army_unit_text").innerText = " Troops";
 		document.getElementById("spy_text").innerText = " Spy";
+		document.getElementById("own_places").innerText = Number(localStorage.getItem("own_places"));
+		document.getElementById("establish_colony_text").innerText = "Establish Colony";
+		
+		if (Number(localStorage.getItem("age")) >= 2) {
+			
+			document.getElementById("establish_colony_div").style.display = "block";
+			
+		}
+		
+		var run_number = 0;
+		
+        setInterval(function() {
+	        run_number += 0; run_number++
+	           if(localStorage.getItem("content1_en_colony" + run_number + "") != null) {
+		        document.getElementById("content_1").innerHTML +=  localStorage.getItem("content1_en_colony" + run_number + "");
+			    document.getElementById("colony" + run_number + "_total_troops").innerText = Number(localStorage.getItem("colony" + run_number + "_total_troops"));
+		        document.getElementById("colony" + run_number + "_total_spy").innerText = Number(localStorage.getItem("colony" + run_number + "_total_spy"));
+		        }
+        }, 10);
 	}
 	
 	document.getElementById("center_total_troops").innerText = Number(localStorage.getItem("total_k_c_troops"));
 	document.getElementById("center_total_spy").innerText = Number(localStorage.getItem("spy_have"));
 	
 	document.getElementById("loading").style.display = "none";
+}
+
+setInterval(function() {
+	
+	if (localStorage.getItem("colony_active") == "on") {
+		
+		document.getElementById("establish_colony_div").style.display = "none";
+		
+	}
+	
+}, 10);
+
+var new_id = localStorage.getItem("id_number"); new_id++
+
+function establish_colony() {
+	
+	if (localStorage.getItem("colony_active") == null) {
+		
+		localStorage.setItem("colony_active", "on");
+		
+		new_id += 0;
+	    localStorage.setItem("id_number", new_id);
+		
+		var fff = "'";
+		var add_colony = '<div class="mn_div"><div class="mn_divs_head"><b style="color: blue; cursor: pointer;">Colony ' + new_id + '</b></div><div class="mn_div_in"><div class="mn_div_in_text"><b id="colony' + new_id + '_total_troops"></b><b> Troops</b></div><div class="mn_div_in_img" style="background-image: url(' + fff + 'images/next_icon.png' + fff + ');"></div></div><div class="mn_div_in"><div class="mn_div_in_text"><b id="colony' + new_id + '_total_spy"></b><b> Spy</b></div><div class="mn_div_in_img" style="background-image: url(' + fff + 'images/next_icon.png' + fff + ');"></div></div></div>';
+		
+		localStorage.setItem("colony" + new_id + "_total_troops", 0);
+		localStorage.setItem("colony" + new_id + "_total_spy", 0);
+		localStorage.setItem("content1_en_colony" + new_id + "", add_colony);
+		localStorage.setItem("own_places", Math.floor(Number(localStorage.getItem("own_places")) + 1));
+		localStorage.setItem("colony" + new_id + "_x", Math.floor(Number(localStorage.getItem("random_castle_x")) - 2));
+		localStorage.setItem("colony" + new_id + "_y", Math.floor(Number(localStorage.getItem("random_castle_y")) + 2));
+		
+	}
+	
 }
 
 /* Castle */
