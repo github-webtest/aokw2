@@ -23,7 +23,27 @@ function page_save() {
 		
 	}
 	
-	document.getElementById("king_name_input").value = localStorage.getItem("king_name");
+	const { JSDOM } = require('jsdom');
+    const { document } = new JSDOM().window;
+	
+	fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    try {
+        const users = JSON.parse(data);
+
+        const kingName = users[0].king_name;
+
+        const kingNameInput = document.getElementById('king_name_input');
+
+        kingNameInput.value = kingName;
+    } catch (parseError) {
+        console.error(parseError);
+    }
+});
 	
 	document.getElementById("loading").style.display = "none";
 }
@@ -32,7 +52,32 @@ function page_save() {
 
 function set_king_name() {
 	var king_n = document.getElementById("king_name_input").value;
-	localStorage.setItem("king_name", king_n);
+	
+	fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    try {
+        const users = JSON.parse(data);
+
+        users.forEach(user => {
+            user.king_name = king_n;
+        });
+
+        fs.writeFile(jsonFilePath, JSON.stringify(users, null, 4), (err) => {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log('Kral isimleri güncellendi.');
+            }
+        });
+    } catch (parseError) {
+        console.error(parseError);
+    }
+});
+	
 	localStorage.setItem("set_kingn", 1);
 }
 
