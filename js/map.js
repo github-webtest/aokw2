@@ -4,6 +4,9 @@ function page_save() {
 	
 	document.getElementById("map_scroll").scrollLeft += Math.floor((localStorage.getItem("random_cc_x") * 80) - (window.screen.width / 2 + 40));
 	document.getElementById("map_scroll").scrollTop += Math.floor((localStorage.getItem("random_cc_y") * 80) - (window.screen.height / 2 + 40));
+	
+	document.getElementById("ldd").style.display = "none";
+}
 
 var map_in_1 = 0;
 var map_in_2 = 0;
