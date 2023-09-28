@@ -27,11 +27,13 @@ function build_info() {
 	document.getElementById("troops_text").innerText = "Castle";
 	
 	if (localStorage.getItem("local_lan") == "en") {
+		
+	  const c_level = Number(localStorage.getItem("castle_level"));
 	
 	 fetch('/getCastle_enData')
         .then(res => res.json())
         .then(data => {
-		const data_castle = data.find(data_castle => data_castle.level === Number(localStorage.getItem("castle_level")));
+		const data_castle = data.find(data_castle => data_castle.Level === c_level);
 			
 		if (data_castle) {
 		    /* info */
@@ -86,7 +88,7 @@ function build_info() {
 			document.getElementById("abilities_3").style.display = "none";
 		}
 			}
-            data.forEach(user => {
+            data.forEach(data_castle => {
             });
         })
         .catch(error => {
