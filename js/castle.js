@@ -363,3 +363,11 @@ setInterval(function() {
                 console.error(error);
             });
 }, 100);
+
+function go_back() {
+	location.href = "/kingdom";
+}
+
+function go_knigdom() {
+	location.href = "/kingdom";
+}
